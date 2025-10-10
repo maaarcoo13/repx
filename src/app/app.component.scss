@@ -1,0 +1,102 @@
+/* Mobile-first styles */
+.stack {
+  margin-bottom: 16px;
+}
+
+.card {
+  padding: 16px;
+  border-radius: 12px;
+  background-color: #000000; /* Primary: black background */
+  color: #ffffff; /* Text in white */
+  box-shadow: 0 2px 6px rgba(255, 0, 0, 0.2); /* Slight red shadow for contrast */
+}
+
+.rank-badge {
+  text-align: center;
+}
+
+.badge-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.badge {
+  background-color: #FF0000; /* Secondary: red badge */
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.rank-number {
+  font-size: 24px;
+  font-weight: bold;
+  color: #FFFFFF; /* Text white */
+}
+
+.rank-label {
+  font-size: 14px;
+  color: #FFFFFF; /* Text white */
+}
+
+.weekly-progress .stat-card {
+  background-color: #1a1a1a; /* Darker card for contrast */
+  border-radius: 8px;
+  text-align: center;
+  padding: 12px;
+  margin: 4px 0;
+  color: #FFFFFF; /* Text white */
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #FF0000; /* Secondary: red for labels */
+}
+
+.stat-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: #FFFFFF; /* White numbers */
+}
+
+.quick-actions .btn-row ion-button {
+  margin-top: 8px;
+  --background: #000000; /* Primary: black background */
+  --color: #FFFFFF; /* Text white */
+}
+
+.quick-actions .btn-row ion-button[fill="outline"] {
+  --border-color: #FF0000; /* Secondary: red outline */
+  --color: #FF0000; /* Secondary text */
+  --background: transparent;
+}
+
+/* Bottom nav icons */
+ion-footer ion-button {
+  --color: #FFFFFF; /* White icons */
+}
+
+ion-footer ion-button[color="primary"] {
+  --color: #000000; /* Black primary selected button */
+}
+
+/* Responsive tweaks (tablet & above) */
+@media (min-width: 768px) {
+  .stack {
+    margin-bottom: 24px;
+  }
+
+  .badge {
+    width: 120px;
+    height: 120px;
+  }
+
+  .rank-number {
+    font-size: 32px;
+  }
+}
