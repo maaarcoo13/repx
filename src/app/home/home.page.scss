@@ -3,6 +3,21 @@
   margin-bottom: 16px;
 }
 
+.center-title {
+  text-align: center;
+  flex: 1; /* Take remaining space */
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* Reduce the size of header buttons uniformly */
+ion-header ion-button {
+  --padding-start: 4px;   /* default is ~16px */
+  --padding-end: 4px;
+  --min-width: 36px;      /* default is ~44px */
+  --height: 36px;         /* default is ~44px */
+}
+
 .card {
   padding: 16px;
   border-radius: 12px;

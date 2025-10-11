@@ -1,26 +1,34 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header>
+  <ion-toolbar class="red-toolbar">
+
+    <!-- Left side buttons: Profile, Groups, Friends -->
     <ion-buttons slot="start">
       <ion-button routerLink="/profile">
-        <ion-icon slot="icon-only" name="person-circle-outline"></ion-icon>
+        <img src="assets/icon/profile.png" alt="Profile" class="header-icon" width=63px height = 45px>
       </ion-button>
-    </ion-buttons>
-
-    <ion-title>RepX Dashboard</ion-title>
-
-    <ion-buttons slot="end">
       <ion-button routerLink="/groups">
-        <ion-icon slot="icon-only" name="people-outline"></ion-icon>
+        <img src="assets/icon/groups.png" alt="Groups" class="header-icon" width=57px height = 42px>
       </ion-button>
       <ion-button routerLink="/friends">
-        <ion-icon slot="icon-only" name="chatbubble-ellipses-outline"></ion-icon>
-      </ion-button>
-      <ion-button routerLink="/settings">
-        <ion-icon slot="icon-only" name="settings-outline"></ion-icon>
+        <img src="assets/icon/friends.png" alt="Friends" class="header-icon" width=65px height = 47px>
       </ion-button>
     </ion-buttons>
+
+    <!-- Centered title -->
+    <ion-title class="center-title">RepX</ion-title>
+
+    <!-- Right side: Settings -->
+    <ion-buttons slot="end">
+      <ion-button routerLink="/settings">
+        <img src="assets/icon/settings.png" alt="Settings" class="header-icon"
+        width=40px height = 30px>
+      </ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
+
+
 
 <ion-content class="ion-padding">
   <!-- Rank Badge Section -->
