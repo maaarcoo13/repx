@@ -31,15 +31,33 @@
 
 
 <ion-content class="ion-padding">
-  <!-- Rank Badge Section -->
-  <section class="stack card rank-badge">
-    <h2>Your Rank</h2>
-    <div class="badge-container">
-      <div class="badge">
-        <p class="rank-number">12</p>
-        <p class="rank-label">Silver</p>
+  <!-- Rank Progress Section -->
+  <section class="stack card rank-section">
+    <div class="rank-wrapper">
+      <!-- Previous Rank -->
+      <div class="rank-side previous-rank">
+        <img src="assets/icons/silver.png" alt="Previous Rank" class="rank-badge faded" />
+        <p class="rank-label faded">Silver</p>
+      </div>
+
+      <!-- Current Rank (center) -->
+      <div class="rank-center">
+        <img src="assets/icons/gold.png" alt="Current Rank" class="rank-badge current" />
+        <p class="rank-title">Gold</p>
+      </div>
+
+      <!-- Next Rank -->
+      <div class="rank-side next-rank">
+        <img src="assets/icons/platinum.png" alt="Next Rank" class="rank-badge faded" />
+        <p class="rank-label faded">Platinum</p>
       </div>
     </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+      <div class="progress-bar" [style.width.%]="rankProgress"></div>
+    </div>
+    <p class="progress-text">{{ rankProgress }}% complete</p>
   </section>
 
   <!-- Weekly Progress Section -->

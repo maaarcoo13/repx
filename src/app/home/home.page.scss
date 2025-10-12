@@ -5,102 +5,143 @@
 
 .center-title {
   text-align: center;
-  flex: 1; /* Take remaining space */
+  flex: 1;
   font-weight: bold;
   font-size: 20px;
 }
 
 /* Reduce the size of header buttons uniformly */
 ion-header ion-button {
-  --padding-start: 4px;   /* default is ~16px */
+  --padding-start: 4px;
   --padding-end: 4px;
-  --min-width: 36px;      /* default is ~44px */
-  --height: 36px;         /* default is ~44px */
+  --min-width: 36px;
+  --height: 36px;
 }
 
 .card {
   padding: 16px;
   border-radius: 12px;
   background-color: #000000; /* Primary: black background */
-  color: #ffffff; /* Text in white */
+  color: #ffffff; /* White text */
   box-shadow: 0 2px 6px rgba(255, 0, 0, 0.2); /* Slight red shadow for contrast */
 }
 
-.rank-badge {
+/* === RANK PROGRESSION SECTION === */
+.rank-section {
   text-align: center;
+  background-color: #111; /* Slightly lighter black for contrast */
+  border-radius: 12px;
+  padding: 20px;
 }
 
-.badge-container {
+.rank-wrapper {
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin-top: 8px;
+  justify-content: space-between;
 }
 
-.badge {
-  background-color: #FF0000; /* Secondary: red badge */
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
+/* Center and side rank badges */
+.rank-side {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
-.rank-number {
-  font-size: 24px;
+.rank-badge {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.rank-badge.current {
+  width: 100px;
+  height: 100px;
+}
+
+.faded {
+  opacity: 0.6;
+}
+
+.rank-title {
+  margin-top: 8px;
+  font-size: 20px;
   font-weight: bold;
-  color: #FFFFFF; /* Text white */
+  color: #ff0000; /* Secondary red */
 }
 
 .rank-label {
   font-size: 14px;
-  color: #FFFFFF; /* Text white */
+  color: #bbbbbb;
 }
 
+/* Progress bar styling */
+.progress-container {
+  width: 100%;
+  height: 12px;
+  background-color: #333;
+  border-radius: 8px;
+  margin-top: 16px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #ff0000;
+  border-radius: 8px 0 0 8px;
+  transition: width 0.4s ease-in-out;
+}
+
+.progress-text {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+/* === WEEKLY PROGRESS SECTION === */
 .weekly-progress .stat-card {
   background-color: #1a1a1a; /* Darker card for contrast */
   border-radius: 8px;
   text-align: center;
   padding: 12px;
   margin: 4px 0;
-  color: #FFFFFF; /* Text white */
+  color: #ffffff;
 }
 
 .stat-label {
   font-size: 14px;
-  color: #FF0000; /* Secondary: red for labels */
+  color: #ff0000; /* Secondary red */
 }
 
 .stat-value {
   font-size: 18px;
   font-weight: bold;
-  color: #FFFFFF; /* White numbers */
+  color: #ffffff;
 }
 
+/* === QUICK ACTIONS SECTION === */
 .quick-actions .btn-row ion-button {
   margin-top: 8px;
-  --background: #000000; /* Primary: black background */
-  --color: #FFFFFF; /* Text white */
+  --background: #000000; /* Primary black background */
+  --color: #ffffff; /* White text */
 }
 
 .quick-actions .btn-row ion-button[fill="outline"] {
-  --border-color: #FF0000; /* Secondary: red outline */
-  --color: #FF0000; /* Secondary text */
+  --border-color: #ff0000;
+  --color: #ff0000;
   --background: transparent;
 }
 
-/* Bottom nav icons */
+/* === BOTTOM NAVIGATION === */
 ion-footer ion-button {
-  --color: #FFFFFF; /* White icons */
+  --color: #ffffff; /* White icons */
 }
 
 ion-footer ion-button[color="primary"] {
-  --color: #000000; /* Black primary selected button */
+  --color: #000000; /* Black for selected */
 }
 
-/* Responsive tweaks (tablet & above) */
+/* === RESPONSIVE TWEAKS (tablet & above) === */
 @media (min-width: 768px) {
   .stack {
     margin-bottom: 24px;
@@ -113,5 +154,15 @@ ion-footer ion-button[color="primary"] {
 
   .rank-number {
     font-size: 32px;
+  }
+
+  .rank-badge.current {
+    width: 120px;
+    height: 120px;
+  }
+
+  .rank-badge {
+    width: 90px;
+    height: 90px;
   }
 }
