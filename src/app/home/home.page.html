@@ -61,18 +61,16 @@
   </section>
 
   <!-- Weekly Progress Section -->
-  <section class="stack card weekly-progress">
-    <h2>Weekly Progress</h2>
-    <ion-grid>
-      <ion-row>
-        <ion-col size="6" *ngFor="let stat of weeklyStats">
-          <div class="stat-card">
-            <p class="stat-label">{{ stat.label }}</p>
-            <p class="stat-value">{{ stat.value }}</p>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  <section>
+    <div class="weekly-chart-card">
+      <h2>Weekly Progress</h2>
+      <canvas
+        baseChart
+        [data]="barChartData"
+        [options]="barChartOptions"
+        chartType="bar">
+      </canvas>
+    </div>
   </section>
 
   <!-- Quick Actions Section -->

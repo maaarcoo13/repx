@@ -166,3 +166,16 @@ ion-footer ion-button[color="primary"] {
     height: 90px;
   }
 }
+
+.weekly-chart-card {
+  background-color: #1a1a1a; /* coincide con otras cards */
+  border-radius: 12px;
+  padding: 16px;
+  margin: 16px 0;
+  color: #fff;
+}
+
+canvas {
+  width: 100% !important; /* full width del container */
+  height: 200px;           /* altura del gráfico */
+}
