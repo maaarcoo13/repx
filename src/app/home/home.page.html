@@ -34,24 +34,25 @@
   <!-- Rank Progress Section -->
   <section class="stack card rank-section">
     <div class="rank-wrapper">
-      <!-- Previous Rank -->
-      <div class="rank-side previous-rank">
-        <img src="assets/icons/silver.png" alt="Previous Rank" class="rank-badge faded" />
-        <p class="rank-label faded">Silver</p>
+  <!-- Previous Rank -->
+      <div class="rank-side previous-rank" *ngIf="previousRank">
+        <img [src]="previousRank.image" alt="Previous Rank" class="rank-badge faded" />
+        <p class="rank-label faded">{{ previousRank.name }}</p>
       </div>
 
-      <!-- Current Rank (center) -->
+  <!-- Current Rank (center) -->
       <div class="rank-center">
-        <img src="assets/icons/gold.png" alt="Current Rank" class="rank-badge current" />
-        <p class="rank-title">Gold</p>
+        <img [src]="currentRank.image" alt="Current Rank" class="rank-badge current" />
+        <p class="rank-title">{{ currentRank.name }}</p>
       </div>
 
-      <!-- Next Rank -->
-      <div class="rank-side next-rank">
-        <img src="assets/icons/platinum.png" alt="Next Rank" class="rank-badge faded" />
-        <p class="rank-label faded">Platinum</p>
+  <!-- Next Rank -->
+      <div class="rank-side next-rank" *ngIf="nextRank">
+        <img [src]="nextRank.image" alt="Next Rank" class="rank-badge faded" />
+        <p class="rank-label faded">{{ nextRank.name }}</p>
       </div>
     </div>
+
 
     <!-- Progress Bar -->
     <div class="progress-container">
@@ -62,8 +63,8 @@
 
   <!-- Weekly Progress Section -->
   <section>
-    <div class="weekly-chart-card">
-      <h2>Weekly Progress</h2>
+    <div class="weekly-chart-card" style="box-shadow: 0 2px 6px rgba(255, 0, 0, 0.2);">
+      <h2 style="text-align: center;">Weekly Progress</h2>
       <canvas
         baseChart
         [data]="barChartData"
@@ -73,34 +74,41 @@
     </div>
   </section>
 
-  <!-- Quick Actions Section -->
-  <section class="stack card quick-actions">
-    <h2>Quick Actions</h2>
-    <div class="btn-row">
-      <ion-button expand="block" color="primary" routerLink="/workout">Start Workout</ion-button>
-      <ion-button expand="block" fill="outline" color="secondary" routerLink="/leagues">Join League</ion-button>
+  <!-- PRs Section -->
+<!-- PRs Section -->
+<section class="prs-section">
+  <h2>Personal Records</h2>
+
+  <div class="pr-grid">
+    <div class="pr-card" *ngFor="let pr of personalRecords">
+      <h3>{{ pr.exercise }}</h3>
+      <p>Weight: {{ pr.maxWeight }} lbs</p>
+      <p>Date: {{ pr.date }}</p>
     </div>
-  </section>
+  </div>
+</section>
+
+
+
 </ion-content>
 
 <!-- Bottom Navigation -->
 <ion-footer>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button routerLink="/home" color="primary">
-        <ion-icon slot="icon-only" name="home-outline"></ion-icon>
+  <ion-toolbar class="bottom-nav-toolbar">
+    <ion-buttons class="bottom-nav">
+      <ion-button routerLink="/home" class="bottom-nav-btn">
+        Home
       </ion-button>
-      <ion-button routerLink="/physique">
-        <ion-icon slot="icon-only" name="body-outline"></ion-icon>
+      <ion-button routerLink="/physique" class="bottom-nav-btn">
+        Phy
       </ion-button>
-    </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button routerLink="/workout">
-        <ion-icon slot="icon-only" name="barbell-outline"></ion-icon>
+      <ion-button routerLink="/workout" class="bottom-nav-btn">
+        Work
       </ion-button>
-      <ion-button routerLink="/leaderboard">
-        <ion-icon slot="icon-only" name="trophy-outline"></ion-icon>
+      <ion-button routerLink="/leaderboard" class="bottom-nav-btn">
+        Leader
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>
+

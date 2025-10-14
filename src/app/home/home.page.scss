@@ -47,33 +47,37 @@ ion-header ion-button {
   align-items: center;
 }
 
+/* Badge images */
 .rank-badge {
   width: 70px;
   height: 70px;
-  border-radius: 50%;
-  object-fit: cover;
+  object-fit: contain;      /* Keep image proportion correct */
+  border-radius: 0;       /* Make badges square instead of circular */
 }
 
 .rank-badge.current {
   width: 100px;
   height: 100px;
+  border-radius: 0;       /* Current badge also square */
+  object-fit: contain;
 }
 
 .faded {
-  opacity: 0.6;
+  opacity: 0.6;           /* Slightly transparent for side badges */
 }
 
 .rank-title {
   margin-top: 8px;
   font-size: 20px;
   font-weight: bold;
-  color: #ff0000; /* Secondary red */
+  color: #ff0000;         /* Secondary red */
 }
 
 .rank-label {
   font-size: 14px;
   color: #bbbbbb;
 }
+
 
 /* Progress bar styling */
 .progress-container {
@@ -83,6 +87,7 @@ ion-header ion-button {
   border-radius: 8px;
   margin-top: 16px;
   overflow: hidden;
+
 }
 
 .progress-bar {
@@ -119,27 +124,83 @@ ion-header ion-button {
   color: #ffffff;
 }
 
-/* === QUICK ACTIONS SECTION === */
-.quick-actions .btn-row ion-button {
-  margin-top: 8px;
-  --background: #000000; /* Primary black background */
-  --color: #ffffff; /* White text */
+/* PRs section */
+.prs-section {
+  padding: 16px;
+  border-radius: 12px;
+  background-color: #000000; /* Primary: black background */
+  box-shadow: 0 2px 6px rgba(255, 0, 0, 0.2); /* Slight red shadow for contrast */
+
+  h2 {
+    margin-bottom: 12px;
+    font-size: 1.5rem;
+    color:white;
+    text-align: center;
+  }
+
+  .pr-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); // 2 columns
+    gap: 12px; // space between cards
+  }
+
+  .pr-card {
+    background-color: red; // red color for cards
+    color: #fff;                // text white
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;         // center all text
+
+    h3 {
+      margin: 0 0 8px 0;
+      font-size: 1.2rem;
+    }
+
+    p {
+      margin: 4px 0;
+      font-size: 1rem;
+    }
+  }
 }
 
-.quick-actions .btn-row ion-button[fill="outline"] {
-  --border-color: #ff0000;
-  --color: #ff0000;
-  --background: transparent;
+
+
+
+/* Bottom Navigation Toolbar */
+.bottom-nav-toolbar {
+  padding: 0;             // Remove extra padding
 }
 
-/* === BOTTOM NAVIGATION === */
-ion-footer ion-button {
-  --color: #ffffff; /* White icons */
+/* Container for the buttons */
+.bottom-nav {
+  display: flex;
+  width: 100%;
+  padding: 0px;
+  gap: 2px;               // Space between buttons (acts as separator)
 }
 
-ion-footer ion-button[color="primary"] {
-  --color: #000000; /* Black for selected */
+/* Individual buttons */
+.bottom-nav-btn {
+  flex: 1;                 // Each button takes equal width
+  border-radius: 0;        // Make buttons rectangular
+  --padding-start: 0;      // Remove left padding
+  --padding-end: 0;        // Remove right padding
+  --background: #ff0000;   // Button background color (red)
+  --color: #ffffff;        // Text and icon color (white)
+  display: flex;
+  height: 45px;
+  margin: 0px;
+  flex-direction: column;  // Icon on top, text below
+  align-items: center;     // Center horizontally
+  justify-content: center; // Center vertically
+  text-align: center;      // Make sure text is centered
+  font-size: 0.9rem;       // Adjust text size if needed
+  line-height: 1.2rem;     // Ensure text fits under icon
+  white-space: nowrap;     // Prevent text from wrapping
 }
+
+
+
 
 /* === RESPONSIVE TWEAKS (tablet & above) === */
 @media (min-width: 768px) {
