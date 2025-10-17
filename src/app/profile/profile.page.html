@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar class="red-toolbar">
+
+    <!-- Left side buttons: Profile, Groups, Friends -->
+    <ion-buttons slot="start">
+      <ion-button routerLink="/profile">
+        <img src="assets/icon/profile.png" alt="Profile" class="header-icon" width=63px height = 45px>
+      </ion-button>
+      <ion-button routerLink="/groups">
+        <img src="assets/icon/groups.png" alt="Groups" class="header-icon" width=57px height = 42px>
+      </ion-button>
+      <ion-button routerLink="/friends">
+        <img src="assets/icon/friends.png" alt="Friends" class="header-icon" width=65px height = 47px>
+      </ion-button>
+    </ion-buttons>
+
+    <!-- Centered title -->
+    <ion-title class="center-title">RepX</ion-title>
+
+    <!-- Right side: Settings -->
+    <ion-buttons slot="end">
+      <ion-button routerLink="/settings">
+        <img src="assets/icon/settings.png" alt="Settings" class="header-icon"
+        width=40px height = 30px>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" class="profile-page">
+
+  <!-- === PROFILE HEADER === -->
+    <div class="profile-header">
+        <div class="profile-top">
+            <img src="assets/icon/profile-pic.jpg" alt="Profile Picture" class="profile-pic" />
+            <img src="assets/badges/contender.png" class="rank-badge" alt="Rank Badge" />
+        </div>
+        <h2 class="username">@maaarcoo.13</h2>
+    </div>
+
+
+
+  <!-- === STATS SECTION === -->
+  <div class="stats-section">
+    <div class="stat-card">
+      <h3>Total Weight Lifted</h3>
+      <p>84,320 kg</p>
+    </div>
+    <div class="stat-card">
+      <h3>This Week</h3>
+      <p>5,460 kg</p>
+    </div>
+    <div class="stat-card">
+      <h3>Best Muscle Group</h3>
+      <p>Chest</p>
+    </div>
+  </div>
+
+  <!-- === PERSONAL INFO SECTION === -->
+  <div class="personal-info">
+    <h2>Personal Information</h2>
+
+    <div class="info-item">
+      <span class="label">Name:</span>
+      <span class="value">Marco Andrea Gil Gonzalez</span>
+    </div>
+    <div class="info-item">
+      <span class="label">Username:</span>
+      <span class="value">@maaarcoo13</span>
+    </div>
+    <div class="info-item">
+      <span class="label">Email:</span>
+      <span class="value">gilgonzmarco@gmail.com</span>
+    </div>
+    <div class="info-item">
+      <span class="label">Phone:</span>
+      <span class="value">+1 (945)-391-0616</span>
+    </div>
+  </div>
+
+</ion-content>
+
+<!-- === BOTTOM TOOLBAR === -->
+<ion-footer>
+  <ion-toolbar class="bottom-nav-toolbar">
+    <ion-buttons class="bottom-nav">
+      <ion-button routerLink="/home" class="bottom-nav-btn">
+        Home
+      </ion-button>
+      <ion-button routerLink="/physique" class="bottom-nav-btn">
+        Phy
+      </ion-button>
+      <ion-button routerLink="/workout" class="bottom-nav-btn">
+        Work
+      </ion-button>
+      <ion-button routerLink="/leaderboard" class="bottom-nav-btn">
+        Leader
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
