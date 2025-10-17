@@ -26,7 +26,7 @@ interface Rank {
 export class HomePage implements OnInit {
 
   // === XP / Rank ===
-  XP = 65000; // manual input for testing
+  XP = 50020; // manual input for testing
   rankProgress = 0;
 
   currentRank: Rank = { name: '', image: '', xpRequired: 0 };
@@ -36,7 +36,7 @@ export class HomePage implements OnInit {
   ranks: Rank[] = [
   { name: 'Beginner', xpRequired: 0, image: 'assets/badges/beginner.png' },
   { name: 'Rookie', xpRequired: 2000, image: 'assets/badges/rookie.png' },
-  { name: 'Contender', xpRequired: 13000, image: 'assets/badges/contender.png' }, // tú
+  { name: 'Contender', xpRequired: 13000, image: 'assets/badges/contender.png' }, // me
   { name: 'Apex', xpRequired: 20000, image: 'assets/badges/apex.png' },
   { name: 'Vanguard', xpRequired: 26000, image: 'assets/badges/vanguard.png' },
   { name: 'Challenger', xpRequired: 32000, image: 'assets/badges/challenger.png' },
@@ -44,8 +44,8 @@ export class HomePage implements OnInit {
   { name: 'Titan', xpRequired: 44000, image: 'assets/badges/titan.png' },
   { name: 'Colossus', xpRequired: 50000, image: 'assets/badges/colossus.png' },
   { name: 'Ascendant', xpRequired: 56000, image: 'assets/badges/ascendant.png' },
-  { name: 'Omega', xpRequired: 62000, image: 'assets/badges/omega.png' }, // Andoni
-  { name: 'Godform', xpRequired: 70000, image: 'assets/badges/godform.png' }, // Cbum
+  { name: 'Omega', xpRequired: 62000, image: 'assets/badges/omega.png' }, 
+  { name: 'Godform', xpRequired: 70000, image: 'assets/badges/godform.png' }, 
 ];
 
 

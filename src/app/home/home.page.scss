@@ -55,11 +55,14 @@ ion-header ion-button {
   border-radius: 0;       /* Make badges square instead of circular */
 }
 
+
+
 .rank-badge.current {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   border-radius: 0;       /* Current badge also square */
   object-fit: contain;
+
 }
 
 .faded {
@@ -70,7 +73,7 @@ ion-header ion-button {
   margin-top: 8px;
   font-size: 20px;
   font-weight: bold;
-  color: #ff0000;         /* Secondary red */
+  color: #B90009;         /* Secondary red */
 }
 
 .rank-label {
@@ -115,7 +118,7 @@ ion-header ion-button {
 
 .stat-label {
   font-size: 14px;
-  color: #ff0000; /* Secondary red */
+  color: #B90009; /* Secondary red */
 }
 
 .stat-value {
@@ -145,7 +148,7 @@ ion-header ion-button {
   }
 
   .pr-card {
-    background-color: red; // red color for cards
+    background-color: #B90009; // red color for cards
     color: #fff;                // text white
     border-radius: 8px;
     padding: 16px;
@@ -185,7 +188,7 @@ ion-header ion-button {
   border-radius: 0;        // Make buttons rectangular
   --padding-start: 0;      // Remove left padding
   --padding-end: 0;        // Remove right padding
-  --background: #ff0000;   // Button background color (red)
+  --background: #B90009;   // Button background color (red)
   --color: #ffffff;        // Text and icon color (white)
   display: flex;
   height: 45px;

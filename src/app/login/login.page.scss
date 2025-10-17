@@ -87,3 +87,43 @@ ion-input {
 .divider {
   color: #888;
 }
+
+/* === RESPONSIVE TWEAKS (tablet & above) === */
+@media (min-width: 768px) {
+  .stack {
+    margin-bottom: 24px;
+  }
+
+  .badge {
+    width: 120px;
+    height: 120px;
+  }
+
+  .rank-number {
+    font-size: 32px;
+  }
+
+  .rank-badge.current {
+    width: 120px;
+    height: 120px;
+  }
+
+  .rank-badge {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+.weekly-chart-card {
+  background-color: #1a1a1a; /* coincide con otras cards */
+  border-radius: 12px;
+  padding: 16px;
+  margin: 16px 0;
+  color: #fff;
+}
+
+canvas {
+  width: 100% !important; /* full width del container */
+  height: 200px;           /* altura del gráfico */
+}
+
