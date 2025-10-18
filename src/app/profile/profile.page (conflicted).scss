@@ -101,7 +101,6 @@ ion-header ion-button {
   flex-wrap: wrap;
   gap: 12px;
   margin-bottom: 25px;
-  margin: 15px;
 }
 
 .stat-card {
@@ -137,7 +136,6 @@ ion-header ion-button {
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 0 12px rgba(255, 0, 0, 0.25);
-  margin: 15px;
 }
 
 .personal-info h2 {
@@ -194,5 +192,7 @@ ion-header ion-button {
   text-align: center;      // Make sure text is centered
   font-size: 0.9rem;       // Adjust text size if needed
   line-height: 1.2rem;     // Ensure text fits under icon
-  white-space: nowrap;     // Prevent 
+  white-space: nowrap;     // Prevent text from wrapping
 }
+
+
