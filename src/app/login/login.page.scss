@@ -1,0 +1,129 @@
+.login-content {
+  --background: #000; /* Full black background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+}
+
+.login-container {
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: white; /* red */
+  margin-bottom: 1.5rem;
+}
+
+.login-card {
+  width: 90%;
+  max-width: 360px;
+  border-radius: 20px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+  background: #1a1a1a; /* dark gray box */
+  color: #fff;
+  margin: 0 auto;
+}
+
+.login-heading {
+  color: #e63946;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+ion-item {
+  --highlight-color-focused: #e63946;
+  --color: #e63946;
+  background: transparent;
+  margin-bottom: 12px;
+}
+
+ion-input {
+  color: #fff;
+}
+
+.login-btn {
+  margin-top: 25px;
+  --border-radius: 16px;
+  --background: #e63946;
+  --background-hover: #c92836;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* Future links (non-functional for now) */
+.login-links {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+}
+
+.login-links a {
+  color: #e63946;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.login-links a:hover {
+  color: #ff4d5b;
+}
+
+.divider {
+  color: #888;
+}
+
+/* === RESPONSIVE TWEAKS (tablet & above) === */
+@media (min-width: 768px) {
+  .stack {
+    margin-bottom: 24px;
+  }
+
+  .badge {
+    width: 120px;
+    height: 120px;
+  }
+
+  .rank-number {
+    font-size: 32px;
+  }
+
+  .rank-badge.current {
+    width: 120px;
+    height: 120px;
+  }
+
+  .rank-badge {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+.weekly-chart-card {
+  background-color: #1a1a1a; /* coincide con otras cards */
+  border-radius: 12px;
+  padding: 16px;
+  margin: 16px 0;
+  color: #fff;
+}
+
+canvas {
+  width: 100% !important; /* full width del container */
+  height: 200px;           /* altura del gráfico */
+}
+

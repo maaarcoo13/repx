@@ -1,0 +1,245 @@
+/* Mobile-first styles */
+.stack {
+  margin-bottom: 16px;
+}
+
+.center-title {
+  text-align: center;
+  flex: 1;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* Reduce the size of header buttons uniformly */
+ion-header ion-button {
+  --padding-start: 4px;
+  --padding-end: 4px;
+  --min-width: 36px;
+  --height: 36px;
+}
+
+.card {
+  padding: 16px;
+  border-radius: 12px;
+  background-color: #000000; /* Primary: black background */
+  color: #ffffff; /* White text */
+  box-shadow: 0 2px 6px rgba(255, 0, 0, 0.2); /* Slight red shadow for contrast */
+}
+
+/* === RANK PROGRESSION SECTION === */
+.rank-section {
+  text-align: center;
+  background-color: #111; /* Slightly lighter black for contrast */
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.rank-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Center and side rank badges */
+.rank-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Badge images */
+.rank-badge {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;      /* Keep image proportion correct */
+  border-radius: 0;       /* Make badges square instead of circular */
+}
+
+
+
+.rank-badge.current {
+  width: 120px;
+  height: 120px;
+  border-radius: 0;       /* Current badge also square */
+  object-fit: contain;
+
+}
+
+.faded {
+  opacity: 0.6;           /* Slightly transparent for side badges */
+}
+
+.rank-title {
+  margin-top: 8px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #B90009;         /* Secondary red */
+}
+
+.rank-label {
+  font-size: 14px;
+  color: #bbbbbb;
+}
+
+
+/* Progress bar styling */
+.progress-container {
+  width: 100%;
+  height: 12px;
+  background-color: #333;
+  border-radius: 8px;
+  margin-top: 16px;
+  overflow: hidden;
+
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #ff0000;
+  border-radius: 8px 0 0 8px;
+  transition: width 0.4s ease-in-out;
+}
+
+.progress-text {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+/* === WEEKLY PROGRESS SECTION === */
+.weekly-progress .stat-card {
+  background-color: #1a1a1a; /* Darker card for contrast */
+  border-radius: 8px;
+  text-align: center;
+  padding: 12px;
+  margin: 4px 0;
+  color: #ffffff;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #B90009; /* Secondary red */
+}
+
+.stat-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/* PRs section */
+.prs-section {
+  padding: 16px;
+  border-radius: 12px;
+  background-color: #000000; /* Primary: black background */
+  box-shadow: 0 2px 6px rgba(255, 0, 0, 0.2); /* Slight red shadow for contrast */
+
+  h2 {
+    margin-bottom: 12px;
+    font-size: 1.5rem;
+    color:white;
+    text-align: center;
+  }
+
+  .pr-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); // 2 columns
+    gap: 12px; // space between cards
+  }
+
+  .pr-card {
+    background-color: #B90009; // red color for cards
+    color: #fff;                // text white
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;         // center all text
+
+    h3 {
+      margin: 0 0 8px 0;
+      font-size: 1.2rem;
+    }
+
+    p {
+      margin: 4px 0;
+      font-size: 1rem;
+    }
+  }
+}
+
+
+
+
+/* Bottom Navigation Toolbar */
+.bottom-nav-toolbar {
+  padding: 0;             // Remove extra padding
+}
+
+/* Container for the buttons */
+.bottom-nav {
+  display: flex;
+  width: 100%;
+  padding: 0px;
+  gap: 2px;               // Space between buttons (acts as separator)
+}
+
+/* Individual buttons */
+.bottom-nav-btn {
+  flex: 1;                 // Each button takes equal width
+  border-radius: 0;        // Make buttons rectangular
+  --padding-start: 0;      // Remove left padding
+  --padding-end: 0;        // Remove right padding
+  --background: #B90009;   // Button background color (red)
+  --color: #ffffff;        // Text and icon color (white)
+  display: flex;
+  height: 45px;
+  margin: 0px;
+  flex-direction: column;  // Icon on top, text below
+  align-items: center;     // Center horizontally
+  justify-content: center; // Center vertically
+  text-align: center;      // Make sure text is centered
+  font-size: 0.9rem;       // Adjust text size if needed
+  line-height: 1.2rem;     // Ensure text fits under icon
+  white-space: nowrap;     // Prevent text from wrapping
+}
+
+
+
+
+/* === RESPONSIVE TWEAKS (tablet & above) === */
+@media (min-width: 768px) {
+  .stack {
+    margin-bottom: 24px;
+  }
+
+  .badge {
+    width: 120px;
+    height: 120px;
+  }
+
+  .rank-number {
+    font-size: 32px;
+  }
+
+  .rank-badge.current {
+    width: 120px;
+    height: 120px;
+  }
+
+  .rank-badge {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+.weekly-chart-card {
+  background-color: #1a1a1a; /* coincide con otras cards */
+  border-radius: 12px;
+  padding: 16px;
+  margin: 16px 0;
+  color: #fff;
+}
+
+canvas {
+  width: 100% !important; /* full width del container */
+  height: 200px;           /* altura del gráfico */
+}

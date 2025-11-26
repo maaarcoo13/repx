@@ -1,0 +1,253 @@
+<ion-header>
+  <ion-toolbar class="red-toolbar">
+
+    <!-- Left side buttons: Profile, Groups, Friends -->
+    <ion-buttons slot="start">
+      <ion-button routerLink="/profile">
+        <img src="assets/icon/profile.png" alt="Profile" class="header-icon" width=63px height = 45px>
+      </ion-button>
+      <ion-button routerLink="/groups">
+        <img src="assets/icon/groups.png" alt="Groups" class="header-icon" width=57px height = 42px>
+      </ion-button>
+      <ion-button routerLink="/friends">
+        <img src="assets/icon/friends.png" alt="Friends" class="header-icon" width=65px height = 47px>
+      </ion-button>
+    </ion-buttons>
+
+    <!-- Centered title -->
+    <ion-title class="center-title">RepX</ion-title>
+
+    <!-- Right side: Settings -->
+    <ion-buttons slot="end">
+      <ion-button routerLink="/settings">
+        <img src="assets/icon/settings.png" alt="Settings" class="header-icon"
+        width=40px height = 30px>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+  <!-- Segment Toggle: Friends / Groups -->
+  <div class="segment-wrapper">
+    <ion-segment [(ngModel)]="selectedSegment" mode="md">
+      <ion-segment-button value="friends">
+        <ion-label>Friends</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="groups">
+        <ion-label>Groups</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <!-- FRIENDS VIEW -->
+  <div *ngIf="selectedSegment === 'friends'">
+    
+    <!-- Search Bar -->
+    <div class="search-section">
+      <ion-searchbar 
+        placeholder="Search friends..." 
+        class="custom-searchbar">
+      </ion-searchbar>
+    </div>
+
+    <!-- Friends List -->
+    <section class="friends-section">
+      <h2>My Friends (24)</h2>
+
+      <!-- Friend Card 1 -->
+      <div class="friend-card">
+        <div class="friend-info">
+          <img src="assets/icon/profile-pic.jpg" alt="Friend" class="friend-avatar">
+          <div class="friend-details">
+            <h3>Alex Rodriguez</h3>
+            <p class="friend-username">@alexrod_fit</p>
+            <div class="friend-stats">
+              <ion-badge color="danger">WARRIOR</ion-badge>
+              <span class="xp-badge">2,450 XP</span>
+            </div>
+          </div>
+        </div>
+        <div class="friend-actions">
+          <ion-button size="small" fill="clear" color="light" (click)="viewProfile('Alex Rodriguez')">
+            <ion-icon name="person-outline"></ion-icon>
+          </ion-button>
+          <ion-button size="small" fill="clear" color="light" (click)="openChat('Alex Rodriguez')">
+            <ion-icon name="chatbubble-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+
+      <!-- Friend Card 2 -->
+      <div class="friend-card">
+        <div class="friend-info">
+          <img src="assets/icon/profile-pic.jpg" alt="Friend" class="friend-avatar">
+          <div class="friend-details">
+            <h3>Sarah Johnson</h3>
+            <p class="friend-username">@sarahj_gains</p>
+            <div class="friend-stats">
+              <ion-badge color="medium">CONTENDER</ion-badge>
+              <span class="xp-badge">1,890 XP</span>
+            </div>
+          </div>
+        </div>
+        <div class="friend-actions">
+          <ion-button size="small" fill="clear" color="light" (click)="viewProfile('Sarah Johnson')">
+            <ion-icon name="person-outline"></ion-icon>
+          </ion-button>
+          <ion-button size="small" fill="clear" color="light" (click)="openChat('Sarah Johnson')">
+            <ion-icon name="chatbubble-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+
+      <!-- Friend Card 3 -->
+      <div class="friend-card">
+        <div class="friend-info">
+          <img src="assets/icon/profile-pic.jpg" alt="Friend" class="friend-avatar">
+          <div class="friend-details">
+            <h3>Mike Chen</h3>
+            <p class="friend-username">@mikechen_lift</p>
+            <div class="friend-stats">
+              <ion-badge color="danger">WARRIOR</ion-badge>
+              <span class="xp-badge">2,120 XP</span>
+            </div>
+          </div>
+        </div>
+        <div class="friend-actions">
+          <ion-button size="small" fill="clear" color="light" (click)="viewProfile('Mike Chen')">
+            <ion-icon name="person-outline"></ion-icon>
+          </ion-button>
+          <ion-button size="small" fill="clear" color="light" (click)="openChat('Mike Chen')">
+            <ion-icon name="chatbubble-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+
+      <!-- Friend Card 4 -->
+      <div class="friend-card">
+        <div class="friend-info">
+          <img src="assets/icon/profile-pic.jpg" alt="Friend" class="friend-avatar">
+          <div class="friend-details">
+            <h3>Emma Davis</h3>
+            <p class="friend-username">@emmad_strong</p>
+            <div class="friend-stats">
+              <ion-badge color="warning">CHAMPION</ion-badge>
+              <span class="xp-badge">3,200 XP</span>
+            </div>
+          </div>
+        </div>
+        <div class="friend-actions">
+          <ion-button size="small" fill="clear" color="light" (click)="viewProfile('Emma Davis')">
+            <ion-icon name="person-outline"></ion-icon>
+          </ion-button>
+          <ion-button size="small" fill="clear" color="light" (click)="openChat('Emma Davis')">
+            <ion-icon name="chatbubble-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Friend Requests Section -->
+    <section class="requests-section" *ngIf="friendRequests.length > 0">
+      <h2>Friend Requests ({{ friendRequests.length }})</h2>
+      
+      <div class="request-card" *ngFor="let request of friendRequests">
+        <img [src]="request.avatar" alt="Request" class="request-avatar">
+        <div class="request-info">
+          <h3>{{ request.name }}</h3>
+          <p>{{ request.username }}</p>
+        </div>
+        <div class="request-actions">
+          <ion-button size="small" fill="solid" color="danger" (click)="acceptFriend(request.name)">
+            Accept
+          </ion-button>
+          <ion-button size="small" fill="outline" color="light" (click)="declineFriend(request.name)">
+            Decline
+          </ion-button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- No Requests Message -->
+    <section class="no-requests" *ngIf="friendRequests.length === 0">
+      <div class="empty-state">
+        <ion-icon name="checkmark-circle-outline" class="empty-icon"></ion-icon>
+        <p>No pending friend requests</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- GROUPS VIEW -->
+  <div *ngIf="selectedSegment === 'groups'">
+    
+    <!-- Search Bar -->
+    <div class="search-section">
+      <ion-searchbar 
+        placeholder="Search groups..." 
+        class="custom-searchbar">
+      </ion-searchbar>
+    </div>
+
+    <!-- Create Group Button -->
+    <div class="create-group-section">
+      <ion-button expand="block" class="create-group-btn" (click)="createGroup()">
+        <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+        Create New Group
+      </ion-button>
+    </div>
+
+    <!-- Groups List -->
+    <section class="groups-section">
+      <h2>My Groups ({{ groups.length }})</h2>
+
+      <!-- Group Card - Dynamic -->
+      <div class="group-card" *ngFor="let group of groups">
+        <div class="group-header">
+          <div class="group-icon">
+            <ion-icon name="people"></ion-icon>
+          </div>
+          <div class="group-info">
+            <h3>{{ group.name }}</h3>
+            <p class="group-members">
+              <ion-icon name="people-outline"></ion-icon> {{ group.members }} members
+            </p>
+          </div>
+          <ion-badge [color]="group.status === 'Active' ? 'success' : 'medium'">{{ group.status }}</ion-badge>
+        </div>
+        <p class="group-description">{{ group.description }}</p>
+        <div class="group-stats">
+          <span><ion-icon name="flame-outline"></ion-icon> {{ group.workouts }} workouts this week</span>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+</ion-content>
+
+<!-- Bottom Navigation -->
+<ion-footer>
+  <ion-toolbar class="bottom-nav-toolbar">
+    <ion-buttons class="bottom-nav">
+      <ion-button routerLink="/home" class="bottom-nav-btn">
+        Home
+      </ion-button>
+      <ion-button routerLink="/routine" class="bottom-nav-btn">
+        Routine
+      </ion-button>
+      <ion-button routerLink="/physique" class="bottom-nav-btn">
+        Phy
+      </ion-button>
+      <ion-button routerLink="/leaderboard" class="bottom-nav-btn">
+        Leader
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,207 @@
+/* === NAVIGATION TOOLBAR === */
+.center-title {
+  text-align: center;
+  flex: 1;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* Reduce the size of header buttons uniformly */
+ion-header ion-button {
+  --padding-start: 4px;
+  --padding-end: 4px;
+  --min-width: 36px;
+  --height: 36px;
+}
+
+/* === PAGE HEADER === */
+.page-header {
+  text-align: center;
+  margin-bottom: 20px;
+  
+  h1 {
+    color: #fff;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .subtitle {
+    color: #aaa;
+    font-size: 14px;
+    margin: 0;
+  }
+}
+
+/* === ADD ROUTINE SECTION === */
+.add-routine-section {
+  margin-bottom: 24px;
+}
+
+.add-routine-btn {
+  --background: #B90009;
+  --background-hover: #ff0000;
+  --color: #fff;
+  font-weight: bold;
+  height: 50px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(185, 0, 9, 0.3);
+}
+
+/* === ROUTINES SECTION === */
+.routines-section {
+  margin-bottom: 24px;
+  
+  h2 {
+    color: #fff;
+    font-size: 20px;
+    margin-bottom: 16px;
+    font-weight: bold;
+  }
+}
+
+.routine-card {
+  background-color: #111;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(255, 0, 0, 0.2);
+  border-left: 4px solid #B90009;
+  
+  .routine-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    
+    h3 {
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0;
+    }
+  }
+  
+  .routine-description {
+    color: #aaa;
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+  
+  .routine-stats {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 12px;
+    
+    span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #ccc;
+      font-size: 13px;
+      
+      ion-icon {
+        color: #B90009;
+        font-size: 16px;
+      }
+    }
+  }
+  
+  .routine-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    
+    ion-button {
+      --border-color: #B90009;
+      --color: #fff;
+    }
+  }
+}
+
+/* === QUICK STATS SECTION === */
+.quick-stats {
+  background-color: #111;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(255, 0, 0, 0.2);
+  
+  h2 {
+    color: #fff;
+    font-size: 20px;
+    margin-bottom: 16px;
+    text-align: center;
+    font-weight: bold;
+  }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.stat-item {
+  text-align: center;
+  
+  .stat-icon {
+    font-size: 32px;
+    color: #B90009;
+    margin-bottom: 8px;
+  }
+  
+  .stat-value {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 4px 0;
+  }
+  
+  .stat-label {
+    color: #aaa;
+    font-size: 12px;
+    margin: 0;
+  }
+}
+
+/* === BOTTOM TOOLBAR === */
+.bottom-nav-toolbar {
+  padding: 0;
+}
+
+.bottom-nav {
+  display: flex;
+  width: 100%;
+  padding: 0px;
+  gap: 2px;
+}
+
+.bottom-nav-btn {
+  flex: 1;
+  border-radius: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+  --background: #B90009;
+  --color: #ffffff;
+  display: flex;
+  height: 45px;
+  margin: 0px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 1.2rem;
+  white-space: nowrap;
+}
+
+/* === RESPONSIVE === */
+@media (min-width: 768px) {
+  .stats-grid {
+    gap: 24px;
+  }
+  
+  .stat-item .stat-icon {
+    font-size: 40px;
+  }
+}

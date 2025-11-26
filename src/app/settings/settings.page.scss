@@ -1,0 +1,88 @@
+/* === NAVIGATION TOOLBAR === */
+.center-title {
+  text-align: center;
+  flex: 1;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+ion-header ion-button {
+  --padding-start: 4px;
+  --padding-end: 4px;
+  --min-width: 36px;
+  --height: 36px;
+}
+
+/* === PAGE HEADER === */
+.page-header {
+  text-align: center;
+  margin-bottom: 30px;
+  
+  h1 {
+    color: #fff;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .subtitle {
+    color: #aaa;
+    font-size: 14px;
+    margin: 0;
+  }
+}
+
+/* === PLACEHOLDER CONTENT === */
+.placeholder-content {
+  text-align: center;
+  padding: 40px 20px;
+  
+  .placeholder-icon {
+    font-size: 120px;
+    color: #B90009;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    color: #ccc;
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+  
+  .note {
+    color: #aaa;
+    font-size: 14px;
+    font-style: italic;
+  }
+}
+
+/* === BOTTOM TOOLBAR === */
+.bottom-nav-toolbar {
+  padding: 0;
+}
+
+.bottom-nav {
+  display: flex;
+  width: 100%;
+  padding: 0px;
+  gap: 2px;
+}
+
+.bottom-nav-btn {
+  flex: 1;
+  border-radius: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+  --background: #B90009;
+  --color: #ffffff;
+  display: flex;
+  height: 45px;
+  margin: 0px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 1.2rem;
+  white-space: nowrap;
+}

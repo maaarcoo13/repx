@@ -1,0 +1,363 @@
+/* === NAVIGATION TOOLBAR === */
+.center-title {
+  text-align: center;
+  flex: 1;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* Reduce the size of header buttons uniformly */
+ion-header ion-button {
+  --padding-start: 4px;
+  --padding-end: 4px;
+  --min-width: 36px;
+  --height: 36px;
+}
+
+/* === SEGMENT TOGGLE === */
+.segment-wrapper {
+  margin-bottom: 20px;
+  
+  ion-segment {
+    --background: #111;
+    border-radius: 12px;
+    padding: 4px;
+    
+    ion-segment-button {
+      --color: #aaa;
+      --color-checked: #fff;
+      --indicator-color: #B90009;
+      --indicator-height: 100%;
+      border-radius: 8px;
+      min-height: 40px;
+      font-weight: 600;
+    }
+  }
+}
+
+/* === SEARCH SECTION === */
+.search-section {
+  margin-bottom: 16px;
+  
+  .custom-searchbar {
+    --background: #111;
+    --color: #fff;
+    --placeholder-color: #aaa;
+    --icon-color: #B90009;
+    --border-radius: 12px;
+    padding: 0;
+  }
+}
+
+/* === CREATE GROUP BUTTON === */
+.create-group-section {
+  margin-bottom: 20px;
+}
+
+.create-group-btn {
+  --background: #B90009;
+  --background-hover: #ff0000;
+  --color: #fff;
+  font-weight: bold;
+  height: 48px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(185, 0, 9, 0.3);
+}
+
+/* === FRIENDS SECTION === */
+.friends-section {
+  margin-bottom: 24px;
+  
+  h2 {
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 16px;
+    font-weight: bold;
+  }
+}
+
+.friend-card {
+  background-color: #111;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(255, 0, 0, 0.15);
+  
+  .friend-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+  }
+  
+  .friend-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #B90009;
+  }
+  
+  .friend-details {
+    flex: 1;
+    
+    h3 {
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      margin: 0 0 4px 0;
+    }
+    
+    .friend-username {
+      color: #aaa;
+      font-size: 13px;
+      margin: 0 0 6px 0;
+    }
+    
+    .friend-stats {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      
+      .xp-badge {
+        color: #B90009;
+        font-size: 12px;
+        font-weight: bold;
+      }
+    }
+  }
+  
+  .friend-actions {
+    display: flex;
+    gap: 4px;
+    
+    ion-button {
+      --color: #fff;
+      
+      ion-icon {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+/* === FRIEND REQUESTS SECTION === */
+.requests-section {
+  margin-bottom: 24px;
+  
+  h2 {
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 16px;
+    font-weight: bold;
+  }
+}
+
+.no-requests {
+  margin-bottom: 24px;
+  
+  .empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #111;
+    border-radius: 12px;
+    
+    .empty-icon {
+      font-size: 60px;
+      color: #4CAF50;
+      margin-bottom: 12px;
+    }
+    
+    p {
+      color: #aaa;
+      font-size: 16px;
+      margin: 0;
+    }
+  }
+}
+
+.request-card {
+  background-color: #111;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 2px 6px rgba(255, 0, 0, 0.15);
+  border-left: 3px solid #B90009;
+  
+  .request-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .request-info {
+    flex: 1;
+    
+    h3 {
+      color: #fff;
+      font-size: 15px;
+      font-weight: bold;
+      margin: 0 0 4px 0;
+    }
+    
+    p {
+      color: #aaa;
+      font-size: 13px;
+      margin: 0;
+    }
+  }
+  
+  .request-actions {
+    display: flex;
+    gap: 6px;
+    
+    ion-button {
+      --padding-start: 12px;
+      --padding-end: 12px;
+      height: 32px;
+      font-size: 13px;
+    }
+  }
+}
+
+/* === GROUPS SECTION === */
+.groups-section {
+  margin-bottom: 24px;
+  
+  h2 {
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 16px;
+    font-weight: bold;
+  }
+}
+
+.group-card {
+  background-color: #111;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(255, 0, 0, 0.2);
+  border-left: 4px solid #B90009;
+  
+  .group-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+    
+    .group-icon {
+      width: 45px;
+      height: 45px;
+      background-color: #B90009;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      ion-icon {
+        font-size: 24px;
+        color: #fff;
+      }
+    }
+    
+    .group-info {
+      flex: 1;
+      
+      h3 {
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 0 0 4px 0;
+      }
+      
+      .group-members {
+        color: #aaa;
+        font-size: 13px;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        
+        ion-icon {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  
+  .group-description {
+    color: #ccc;
+    font-size: 14px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  
+  .group-stats {
+    display: flex;
+    gap: 16px;
+    
+    span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #aaa;
+      font-size: 13px;
+      
+      ion-icon {
+        color: #B90009;
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+/* === BOTTOM TOOLBAR === */
+.bottom-nav-toolbar {
+  padding: 0;
+}
+
+.bottom-nav {
+  display: flex;
+  width: 100%;
+  padding: 0px;
+  gap: 2px;
+}
+
+.bottom-nav-btn {
+  flex: 1;
+  border-radius: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+  --background: #B90009;
+  --color: #ffffff;
+  display: flex;
+  height: 45px;
+  margin: 0px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 1.2rem;
+  white-space: nowrap;
+}
+
+/* === RESPONSIVE === */
+@media (min-width: 768px) {
+  .friend-card, .group-card {
+    padding: 20px;
+  }
+  
+  .friend-avatar {
+    width: 60px;
+    height: 60px;
+  }
+}

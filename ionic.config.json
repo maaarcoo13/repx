@@ -1,0 +1,7 @@
+{
+  "name": "repx",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
