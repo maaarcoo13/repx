@@ -29,17 +29,38 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <div class="page-header">
-    <h1>Physique Page</h1>
-    <p class="subtitle">Track your body transformation</p>
+  <!-- PHYSIQUE BLOCK -->
+  <div class="physique-wrapper">
+    <div class="avatars-chart-container">
+    
+    <!-- Avatars Section -->
+      <div class="avatars-section">
+        <div class="avatar-front">
+          <img src="assets/icon/front.png" alt="front" class="avatar">
+        </div>
+        <div class="avatar-back">
+          <img src="assets/icon/back.png" alt="back" class="avatar">
+        </div>
+      </div>
+
+    <!-- Radar Chart Section -->
+      <div class="chart-section">
+        <canvas id="physiqueRadarChart"></canvas>
+      </div>
+    
+    </div>
   </div>
 
-  <div class="placeholder-content">
-    <ion-icon name="body-outline" class="placeholder-icon"></ion-icon>
-    <p>This page is currently being developed by your teammate.</p>
-    <p class="note">Coming soon: Progress photos, measurements, and body stats!</p>
-  </div>
+
+
+
+
+
+
+
+
 </ion-content>
+
 
 <!-- Bottom Navigation -->
 <ion-footer>
@@ -48,11 +69,11 @@
       <ion-button routerLink="/home" class="bottom-nav-btn">
         Home
       </ion-button>
-      <ion-button routerLink="/routine" class="bottom-nav-btn">
-        Routine
-      </ion-button>
       <ion-button routerLink="/physique" class="bottom-nav-btn">
-        Phy
+        Physique
+      </ion-button>
+      <ion-button routerLink="/workout" class="bottom-nav-btn">
+        Workout
       </ion-button>
       <ion-button routerLink="/leaderboard" class="bottom-nav-btn">
         Leader
@@ -60,3 +81,6 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>
+
+
+

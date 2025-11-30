@@ -1,4 +1,8 @@
-/* === NAVIGATION TOOLBAR === */
+/* Mobile-first styles */
+.stack {
+  margin-bottom: 16px;
+}
+
 .center-title {
   text-align: center;
   flex: 1;
@@ -6,6 +10,7 @@
   font-size: 20px;
 }
 
+/* Reduce the size of header buttons uniformly */
 ion-header ion-button {
   --padding-start: 4px;
   --padding-end: 4px;
@@ -13,76 +18,138 @@ ion-header ion-button {
   --height: 36px;
 }
 
-/* === PAGE HEADER === */
-.page-header {
-  text-align: center;
-  margin-bottom: 30px;
-  
-  h1 {
-    color: #fff;
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 8px;
-  }
-  
-  .subtitle {
-    color: #aaa;
-    font-size: 14px;
-    margin: 0;
-  }
+/*MAIN CONTENT*/
+
+.physique-wrapper {
+  width: 100%;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 15px;
+  background: rgba(20, 20, 20, 0.6);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
 }
 
-/* === PLACEHOLDER CONTENT === */
-.placeholder-content {
-  text-align: center;
-  padding: 40px 20px;
-  
-  .placeholder-icon {
-    font-size: 120px;
-    color: #B90009;
-    margin-bottom: 20px;
-  }
-  
-  p {
-    color: #ccc;
-    font-size: 16px;
-    margin-bottom: 12px;
-  }
-  
-  .note {
-    color: #aaa;
-    font-size: 14px;
-    font-style: italic;
-  }
+.avatars-chart-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-/* === BOTTOM TOOLBAR === */
+.avatars-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 15px;
+}
+
+.avatar-front,
+.avatar-back {
+  width: 120px;
+  height: 200px;
+  border-radius: 16px;
+  background: linear-gradient(145deg, rgba(255,0,0,0.2), rgba(0,0,0,0.2));
+  box-shadow: 0 0 12px rgba(255,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: bold;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  border-radius: 16px;
+}
+
+.chart-section {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+  padding: 10px;
+  background: rgba(30, 30, 30, 0.5);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 15px rgba(255,0,0,0.3);
+}
+
+
+
+
+/* Bottom Navigation Toolbar */
 .bottom-nav-toolbar {
-  padding: 0;
+  padding: 0;             // Remove extra padding
 }
 
+/* Container for the buttons */
 .bottom-nav {
   display: flex;
   width: 100%;
   padding: 0px;
-  gap: 2px;
+  gap: 2px;               // Space between buttons (acts as separator)
 }
 
+/* Individual buttons */
 .bottom-nav-btn {
-  flex: 1;
-  border-radius: 0;
-  --padding-start: 0;
-  --padding-end: 0;
-  --background: #B90009;
-  --color: #ffffff;
+  flex: 1;                 // Each button takes equal width
+  border-radius: 0;        // Make buttons rectangular
+  --padding-start: 0;      // Remove left padding
+  --padding-end: 0;        // Remove right padding
+  --background: #B90009;   // Button background color (red)
+  --color: #ffffff;        // Text and icon color (white)
   display: flex;
   height: 45px;
   margin: 0px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-size: 0.9rem;
-  line-height: 1.2rem;
-  white-space: nowrap;
+  flex-direction: column;  // Icon on top, text below
+  align-items: center;     // Center horizontally
+  justify-content: center; // Center vertically
+  text-align: center;      // Make sure text is centered
+  font-size: 0.9rem;       // Adjust text size if needed
+  line-height: 1.2rem;     // Ensure text fits under icon
+  white-space: nowrap;     // Prevent text from wrapping
+}
+
+
+
+
+/* === RESPONSIVE TWEAKS (tablet & above) === */
+@media (min-width: 768px) {
+  .stack {
+    margin-bottom: 24px;
+  }
+
+  .badge {
+    width: 120px;
+    height: 120px;
+  }
+
+  .rank-number {
+    font-size: 32px;
+  }
+
+  .rank-badge.current {
+    width: 120px;
+    height: 120px;
+  }
+
+  .rank-badge {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+.weekly-chart-card {
+  background-color: #1a1a1a; /* coincide con otras cards */
+  border-radius: 12px;
+  padding: 16px;
+  margin: 16px 0;
+  color: #fff;
+}
+
+canvas {
+  width: 100% !important; /* full width del container */
+  height: 200px;           /* altura del gráfico */
 }
