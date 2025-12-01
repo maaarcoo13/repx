@@ -10,11 +10,11 @@
 
         <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
           <ion-item lines="none">
-            <ion-label position="floating">Email</ion-label>
+            <ion-label position="floating">Username</ion-label>
             <ion-input
-              type="email"
-              name="email"
-              [(ngModel)]="email"
+              type="text"
+              name="username"
+              [(ngModel)]="username"
               required
             ></ion-input>
           </ion-item>
@@ -43,10 +43,12 @@
     </ion-card>
 
     <!-- Future Links -->
-    <div class="login-links">
-      <a href="#" class="signup-link">Sign up</a>
-      <span class="divider">|</span>
-      <a href="#" class="forgot-link">Can’t log in?</a>
-    </div>
+    
   </div>
+  <div class="login-links">
+    <a [routerLink]="'/signup'" class="signup-link">Sign up</a>
+    <span class="divider">|</span>
+    <a href="#" class="forgot-link">Can’t log in?</a>
+  </div>
+
 </ion-content>

@@ -9,6 +9,7 @@ import { PhysiquePage } from './physique/physique.page';
 import { WorkoutPage } from './workout/workout.page';
 import { LeaderboardPage } from './leaderboard/leaderboard.page';
 import { SettingsPage } from './settings/settings.page';
+import { SignupPage } from './signup/signup';
 
 export const routes: Routes = [
   {
@@ -55,5 +56,9 @@ export const routes: Routes = [
   {
     path: 'settings',
     component: SettingsPage
+  },
+  {
+    path: 'signup',
+    component: SignupPage
   }
 ];

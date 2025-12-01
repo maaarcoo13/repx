@@ -1,0 +1,91 @@
+<ion-content class="signup-content">
+  <div class="signup-container">
+    <h1 class="app-title">RepX</h1>
+
+    <ion-card class="signup-card">
+      <ion-card-content>
+        <h2 class="signup-heading">Sign Up</h2>
+
+        <form (ngSubmit)="onSubmit()" #signupForm="ngForm">
+          <ion-item lines="none">
+            <ion-label position="floating">Username</ion-label>
+            <ion-input
+              type="text"
+              name="username"
+              [(ngModel)]="username"
+              required
+            ></ion-input>
+          </ion-item>
+
+          <ion-item lines="none">
+            <ion-label position="floating">Email</ion-label>
+            <ion-input
+              type="email"
+              name="email"
+              [(ngModel)]="email"
+              required
+            ></ion-input>
+          </ion-item>
+
+          <ion-item lines="none">
+            <ion-label position="floating">Password</ion-label>
+            <ion-input
+              type="password"
+              name="password"
+              [(ngModel)]="password"
+              required
+            ></ion-input>
+          </ion-item>
+
+          <ion-item lines="none">
+            <ion-label position="floating">Height (cm)</ion-label>
+            <ion-input
+              type="number"
+              name="height"
+              [(ngModel)]="height"
+              required
+            ></ion-input>
+          </ion-item>
+
+          <ion-item lines="none">
+            <ion-label position="floating">Weight (kg)</ion-label>
+            <ion-input
+              type="number"
+              name="weight"
+              [(ngModel)]="weight"
+              required
+            ></ion-input>
+          </ion-item>
+
+          <ion-item lines="none">
+            <ion-label position="floating">Wingspan (cm)</ion-label>
+            <ion-input
+              type="number"
+              name="wingspan"
+              [(ngModel)]="wingspan"
+              required
+            ></ion-input>
+          </ion-item>
+
+          <ion-item lines="none">
+            <ion-label>Sex</ion-label>
+            <ion-select [(ngModel)]="sex" name="sex" interface="popover" required>
+              <ion-select-option value="Male">Male</ion-select-option>
+              <ion-select-option value="Female">Female</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-button
+            expand="block"
+            color="danger"
+            type="submit"
+            [disabled]="!signupForm.valid"
+            class="signup-btn"
+          >
+            Sign Up
+          </ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
