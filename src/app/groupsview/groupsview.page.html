@@ -1,6 +1,5 @@
 <ion-header>
   <ion-toolbar class="red-toolbar">
-
     <!-- Left side buttons -->
     <ion-buttons slot="start">
       <ion-button routerLink="/profile">
@@ -21,43 +20,44 @@
         <img src="assets/icon/settings.png" alt="Settings" class="header-icon" width="40" height="30">
       </ion-button>
     </ion-buttons>
-
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <div class="physique-wrapper">
-    <div class="avatars-chart-container">
 
-      <!-- Avatars Section -->
-      <div class="avatars-section">
-        <div class="avatar-front">
-          <img src="assets/icon/front.png" alt="front" class="avatar">
-        </div>
-        <div class="avatar-back">
-          <img src="assets/icon/back.png" alt="back" class="avatar">
-        </div>
-      </div>
+  <!-- GROUP NAME -->
+  <h1 class="group-title">{{ groupName }}</h1>
 
-      <!-- Radar Chart Section -->
-      <div class="chart-section">
-        <canvas id="physiqueRadarChart"></canvas>
-      </div>
-
+  <!-- PENDING REQUESTS (Visible only if leader) -->
+  <div *ngIf="isLeader && pendingRequests.length > 0" class="pending-section">
+    <h3>Pending Requests</h3>
+    <div *ngFor="let req of pendingRequests" class="pending-card">
+      <span>{{ req.username }}</span>
+      <ion-button size="small" fill="solid" color="success" (click)="acceptRequest(req.username)">Accept</ion-button>
+      <ion-button size="small" fill="outline" color="medium" (click)="declineRequest(req.username)">Decline</ion-button>
     </div>
+  </div>
 
-    <!-- NEW MUSCLE SUMMARY SECTION -->
-    <div class="muscle-summary">
-      <div 
-        class="muscle-card" 
-        *ngFor="let m of muscleGroups; let i = index" 
-        [ngClass]="m.color">
-        <div class="muscle-name">{{ m.name }}</div>
-        <div class="muscle-xp">XP: {{ m.xp }}</div>
-        <div class="muscle-rank">Rank: {{ m.rank }}</div>
+  <!-- LEADERBOARD TITLE -->
+  <h2 class="leaderboard-title">Leaderboard</h2>
+
+  <!-- MEMBER LEADERBOARD -->
+  <div class="members-section">
+    <div *ngFor="let member of members; let i = index" 
+         [ngClass]="{
+           'top-member': i === 0 || i === 1 || i === 2
+         }"
+         [ngStyle]="{'border-color': i === 0 ? '#FFD700' : i === 1 ? '#C0C0C0' : i === 2 ? '#CD7F32' : '#3a3a3a'}"
+         class="member-card">
+      <div class="member-rank">{{ i + 1 }}</div>
+      <div class="member-info">
+        <span class="member-username">{{ member.username }}</span>
+        <span class="member-xp">{{ member.xp | number }} XP</span>
+        <span class="member-status">{{ member.status }}</span>
       </div>
     </div>
   </div>
+
 </ion-content>
 
 <ion-footer>
@@ -66,7 +66,7 @@
       <ion-button routerLink="/home" class="bottom-nav-btn">Home</ion-button>
       <ion-button routerLink="/physique" class="bottom-nav-btn">Physique</ion-button>
       <ion-button routerLink="/workout" class="bottom-nav-btn">Workout</ion-button>
-      <ion-button routerLink="/leaderboard" class="bottom-nav-btn">Leader</ion-button>
+      <ion-button routerLink="/leaderboard" class="bottom-nav-btn">Leaderboard</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>

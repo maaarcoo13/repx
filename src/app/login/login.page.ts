@@ -33,32 +33,35 @@ export class LoginPage {
   constructor(private router: Router, private firestore: Firestore) {}
 
   async onSubmit() {
-    if (!this.username || !this.password) {
-      alert('Please enter both username and password.');
+  if (!this.username || !this.password) {
+    alert('Please enter both username and password.');
+    return;
+  }
+
+  try {
+    const userRef = doc(this.firestore, 'users', this.username);
+    const userSnap = await getDoc(userRef);
+
+    if (!userSnap.exists()) {
+      alert('User does not exist.');
       return;
     }
 
-    try {
-      const userRef = doc(this.firestore, 'users', this.username);
-      const userSnap = await getDoc(userRef);
+    const userData = userSnap.data() as User;
 
-      if (!userSnap.exists()) {
-        alert('User does not exist.');
-        return;
-      }
+    if (userData.password === this.password) {
+      localStorage.setItem('currentUsername', this.username);
 
-      const userData = userSnap.data() as User;
-
-      if (userData.password === this.password) {
-        this.router.navigateByUrl('/home');
-      } else {
-        alert('Incorrect password.');
-      }
-    } catch (error) {
-      console.error(error);
-      alert('Error logging in.');
+      this.router.navigateByUrl('/home');
+    } else {
+      alert('Incorrect password.');
     }
+  } catch (error) {
+    console.error(error);
+    alert('Error logging in.');
   }
+}
+
 
   goToSignup() {
     this.router.navigateByUrl('/signup');

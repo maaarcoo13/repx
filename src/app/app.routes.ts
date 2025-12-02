@@ -9,7 +9,8 @@ import { PhysiquePage } from './physique/physique.page';
 import { WorkoutPage } from './workout/workout.page';
 import { LeaderboardPage } from './leaderboard/leaderboard.page';
 import { SettingsPage } from './settings/settings.page';
-import { SignupPage } from './signup/signup';
+import { SignupPage } from './signup/signup.page';
+import { GroupsviewPage } from './groupsview/groupsview.page';
 
 export const routes: Routes = [
   {
@@ -60,5 +61,9 @@ export const routes: Routes = [
   {
     path: 'signup',
     component: SignupPage
+  },
+  {
+    path: 'groupsview',
+    component: GroupsviewPage
   }
 ];

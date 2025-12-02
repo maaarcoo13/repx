@@ -1,73 +1,96 @@
-/* === NAVIGATION TOOLBAR === */
-.center-title {
+.leaderboard-title {
   text-align: center;
-  flex: 1;
+  font-size: 28px;
   font-weight: bold;
-  font-size: 20px;
+  margin: 16px 0;
+  color: #fff;
 }
 
-ion-header ion-button {
-  --padding-start: 4px;
-  --padding-end: 4px;
-  --min-width: 36px;
-  --height: 36px;
+.filter-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
 }
 
-/* === PAGE HEADER === */
-.page-header {
+.filter-container button {
+  padding: 6px 12px;
+  border-radius: 12px;
+  border: none;
+  background-color: #444;
+  color: #fff;
+  cursor: pointer;
+}
+
+.filter-container button.active-filter {
+  background-color: #B90009;
+  color: #fff;
+}
+
+.leaderboard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.member-card {
+  display: flex;
+  align-items: center;
+  background-color: #555;
+  padding: 12px;
+  border-radius: 12px;
+  color: #fff;
+  position: relative;
+}
+
+.member-rank {
+  font-size: 32px;
+  font-weight: bold;
+  margin-right: 16px;
+  min-width: 60px;
   text-align: center;
-  margin-bottom: 30px;
-  
-  h1 {
-    color: #fff;
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 8px;
-  }
-  
-  .subtitle {
-    color: #aaa;
-    font-size: 14px;
-    margin: 0;
-  }
 }
 
-/* === PLACEHOLDER CONTENT === */
-.placeholder-content {
-  text-align: center;
-  padding: 40px 20px;
-  
-  .placeholder-icon {
-    font-size: 120px;
-    color: #B90009;
-    margin-bottom: 20px;
-  }
-  
-  p {
-    color: #ccc;
-    font-size: 16px;
-    margin-bottom: 12px;
-  }
-  
-  .note {
-    color: #aaa;
-    font-size: 14px;
-    font-style: italic;
-  }
+.gold-ring {
+  border: 3px solid gold;
+  border-radius: 12px;
+}
+.silver-ring {
+  border: 3px solid silver;
+  border-radius: 12px;
+}
+.bronze-ring {
+  border: 3px solid #cd7f32;
+  border-radius: 12px;
 }
 
-/* === BOTTOM TOOLBAR === */
+.member-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.member-username {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.member-xp, .member-muscle {
+  font-size: 14px;
+  color: #ccc;
+}
+
+/* Bottom Navigation Toolbar */
 .bottom-nav-toolbar {
   padding: 0;
 }
-
 .bottom-nav {
   display: flex;
   width: 100%;
   padding: 0px;
   gap: 2px;
 }
-
 .bottom-nav-btn {
   flex: 1;
   border-radius: 0;

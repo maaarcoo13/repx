@@ -6,7 +6,6 @@
   font-size: 20px;
 }
 
-/* Reduce the size of header buttons uniformly */
 ion-header ion-button {
   --padding-start: 4px;
   --padding-end: 4px;
@@ -14,16 +13,104 @@ ion-header ion-button {
   --height: 36px;
 }
 
-.redirect-message {
+/* === MAIN CONTENT === */
+
+.page-container {
+  padding: 12px;
+}
+
+/* SEARCH + BUTTONS ROW */
+.top-controls {
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 100%;
-  
-  p {
-    color: #fff;
-    font-size: 18px;
-  }
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+/* Search Bar */
+.group-searchbar {
+  flex: 1;
+}
+
+/* Join + Create Buttons */
+.action-btn {
+  background: #B90009;
+  color: white;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: bold;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* === JOIN GROUP POPUP INPUT === */
+.join-input-container {
+  margin-top: 10px;
+  background: #1e1e1e;
+  padding: 12px;
+  border-radius: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.join-input {
+  flex: 1;
+  border-radius: 8px;
+  padding-left: 10px;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  color: white;
+}
+
+.join-confirm-btn {
+  background: #0084ff;
+  color: #fff;
+  border-radius: 8px;
+  padding: 0 14px;
+  font-weight: bold;
+}
+
+/* === GROUP LIST === */
+.group-list {
+  margin-top: 20px;
+}
+
+/* Group Card (similar to friend card style) */
+.group-card {
+  background: #2a2a2a;
+  padding: 12px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border: 1px solid #444;
+}
+
+.group-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.group-name {
+  font-size: 18px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.group-status {
+  font-size: 14px;
+  color: #ccc;
+}
+
+.group-arrow {
+  font-size: 20px;
+  color: #ccc;
 }
 
 /* === BOTTOM TOOLBAR === */

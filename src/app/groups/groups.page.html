@@ -1,58 +1,84 @@
 <ion-header>
   <ion-toolbar class="red-toolbar">
-
-    <!-- Left side buttons: Profile, Groups, Friends -->
+    <!-- Left buttons -->
     <ion-buttons slot="start">
       <ion-button routerLink="/profile">
-        <img src="assets/icon/profile.png" alt="Profile" class="header-icon" width=63px height = 45px>
+        <img src="assets/icon/profile.png" alt="Profile" class="header-icon" width="63" height="45">
       </ion-button>
       <ion-button routerLink="/groups">
-        <img src="assets/icon/groups.png" alt="Groups" class="header-icon" width=57px height = 42px>
+        <img src="assets/icon/groups.png" alt="Groups" class="header-icon" width="57" height="42">
       </ion-button>
       <ion-button routerLink="/friends">
-        <img src="assets/icon/friends.png" alt="Friends" class="header-icon" width=65px height = 47px>
+        <img src="assets/icon/friends.png" alt="Friends" class="header-icon" width="65" height="47">
       </ion-button>
     </ion-buttons>
 
-    <!-- Centered title -->
     <ion-title class="center-title">RepX</ion-title>
 
-    <!-- Right side: Settings -->
+    <!-- Right buttons -->
     <ion-buttons slot="end">
       <ion-button routerLink="/settings">
-        <img src="assets/icon/settings.png" alt="Settings" class="header-icon"
-        width=40px height = 30px>
+        <img src="assets/icon/settings.png" alt="Settings" class="header-icon" width="40" height="30">
       </ion-button>
     </ion-buttons>
-
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  
-  <!-- Page redirects to Friends page with Groups tab selected -->
-  <div class="redirect-message">
-    <p>Redirecting to Friends & Groups...</p>
-  </div>
 
+  <div class="page-container">
+
+    <!-- SEARCH + JOIN + CREATE -->
+    <div class="top-controls">
+      <ion-searchbar
+        class="group-searchbar"
+        [(ngModel)]="searchQuery"
+        (ionInput)="applyFilter()"
+        placeholder="Search Groups...">
+      </ion-searchbar>
+
+      <button class="action-btn" (click)="toggleJoinInput()">Join</button>
+      <button class="action-btn" (click)="openCreateGroupPrompt()">Create</button>
+    </div>
+
+    <!-- JOIN GROUP INPUT -->
+    <div *ngIf="showJoinInput" class="join-input-container">
+      <input
+        type="text"
+        class="join-input"
+        [(ngModel)]="joinGroupName"
+        placeholder="Enter group name">
+      <button class="join-confirm-btn" (click)="joinGroup()">OK</button>
+    </div>
+
+    <!-- GROUP LIST -->
+    <div class="group-list">
+      <div
+        class="group-card"
+        *ngFor="let group of filteredGroups"
+        (click)="openGroupView(group.groupName)"
+        role="button"
+        tabindex="0">
+
+        <div class="group-info">
+          <div class="group-name">{{ group.groupName }}</div>
+          <div class="group-status">Status: {{ group.status }}</div>
+        </div>
+
+        <div class="group-arrow">></div>
+      </div>
+    </div>
+
+  </div>
 </ion-content>
 
-<!-- Bottom Navigation -->
 <ion-footer>
   <ion-toolbar class="bottom-nav-toolbar">
     <ion-buttons class="bottom-nav">
-      <ion-button routerLink="/home" class="bottom-nav-btn">
-        Home
-      </ion-button>
-      <ion-button routerLink="/routine" class="bottom-nav-btn">
-        Routine
-      </ion-button>
-      <ion-button routerLink="/physique" class="bottom-nav-btn">
-        Phy
-      </ion-button>
-      <ion-button routerLink="/leaderboard" class="bottom-nav-btn">
-        Leader
-      </ion-button>
+      <ion-button routerLink="/home" class="bottom-nav-btn">Home</ion-button>
+      <ion-button routerLink="/routine" class="bottom-nav-btn">Routine</ion-button>
+      <ion-button routerLink="/physique" class="bottom-nav-btn">Phy</ion-button>
+      <ion-button routerLink="/leaderboard" class="bottom-nav-btn">Leader</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>

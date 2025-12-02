@@ -1,62 +1,67 @@
 <ion-header>
   <ion-toolbar class="red-toolbar">
-
-    <!-- Left side buttons: Profile, Groups, Friends -->
     <ion-buttons slot="start">
       <ion-button routerLink="/profile">
-        <img src="assets/icon/profile.png" alt="Profile" class="header-icon" width=63px height = 45px>
+        <img src="assets/icon/profile.png" alt="Profile" class="header-icon" width="63" height="45">
       </ion-button>
       <ion-button routerLink="/groups">
-        <img src="assets/icon/groups.png" alt="Groups" class="header-icon" width=57px height = 42px>
+        <img src="assets/icon/groups.png" alt="Groups" class="header-icon" width="57" height="42">
       </ion-button>
       <ion-button routerLink="/friends">
-        <img src="assets/icon/friends.png" alt="Friends" class="header-icon" width=65px height = 47px>
+        <img src="assets/icon/friends.png" alt="Friends" class="header-icon" width="65" height="47">
       </ion-button>
     </ion-buttons>
 
-    <!-- Centered title -->
     <ion-title class="center-title">RepX</ion-title>
 
-    <!-- Right side: Settings -->
     <ion-buttons slot="end">
       <ion-button routerLink="/settings">
-        <img src="assets/icon/settings.png" alt="Settings" class="header-icon"
-        width=40px height = 30px>
+        <img src="assets/icon/settings.png" alt="Settings" class="header-icon" width="40" height="30">
       </ion-button>
     </ion-buttons>
-
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <div class="page-header">
-    <h1>Leaderboard</h1>
-    <p class="subtitle">Compete with friends and climb the ranks</p>
+  <h1 class="leaderboard-title">Global Leaderboard</h1>
+
+  <!-- Muscle Filter -->
+  <div class="filter-container">
+    <button *ngFor="let muscle of muscleGroups"
+            [ngClass]="{'active-filter': filterMuscle === muscle}"
+            (click)="selectFilter(muscle)">
+      {{ muscle }}
+    </button>
   </div>
 
-  <div class="placeholder-content">
-    <ion-icon name="trophy-outline" class="placeholder-icon"></ion-icon>
-    <p>This page is ready for development.</p>
-    <p class="note">Coming soon: Global rankings, friend leaderboards, and achievements!</p>
+  <!-- Leaderboard -->
+  <div class="leaderboard">
+    <div *ngFor="let user of topUsers; let i = index" 
+         class="member-card" 
+         [ngClass]="{'gold-ring': i===0, 'silver-ring': i===1, 'bronze-ring': i===2}">
+      
+      <!-- Rank number -->
+      <div class="member-rank">#{{ i + 1 }}</div>
+
+      <!-- User info -->
+      <div class="member-info">
+        <span class="member-username">{{ user.username }}</span>
+        <span class="member-xp">
+          {{ filterMuscle==='Total' ? user.totalXP : user[filterMuscle+'XP'] }} XP
+        </span>
+        <span class="member-muscle">Top Muscle: {{ user.topMuscle }}</span>
+      </div>
+    </div>
   </div>
 </ion-content>
 
-<!-- Bottom Navigation -->
 <ion-footer>
   <ion-toolbar class="bottom-nav-toolbar">
     <ion-buttons class="bottom-nav">
-      <ion-button routerLink="/home" class="bottom-nav-btn">
-        Home
-      </ion-button>
-      <ion-button routerLink="/routine" class="bottom-nav-btn">
-        Routine
-      </ion-button>
-      <ion-button routerLink="/physique" class="bottom-nav-btn">
-        Phy
-      </ion-button>
-      <ion-button routerLink="/leaderboard" class="bottom-nav-btn">
-        Leader
-      </ion-button>
+      <ion-button routerLink="/home" class="bottom-nav-btn">Home</ion-button>
+      <ion-button routerLink="/physique" class="bottom-nav-btn">Physique</ion-button>
+      <ion-button routerLink="/workout" class="bottom-nav-btn">Workout</ion-button>
+      <ion-button routerLink="/leaderboard" class="bottom-nav-btn">Leaderboard</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>

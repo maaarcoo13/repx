@@ -18,11 +18,31 @@
           </ion-item>
 
           <ion-item lines="none">
+            <ion-label position="floating">Name</ion-label>
+            <ion-input
+              type="text"
+              name="name"
+              [(ngModel)]="name"
+              required
+            ></ion-input>
+          </ion-item>
+
+          <ion-item lines="none">
             <ion-label position="floating">Email</ion-label>
             <ion-input
               type="email"
               name="email"
               [(ngModel)]="email"
+              required
+            ></ion-input>
+          </ion-item>
+
+          <ion-item lines="none">
+            <ion-label position="floating">Phone</ion-label>
+            <ion-input
+              type="text"
+              name="phone"
+              [(ngModel)]="phone"
               required
             ></ion-input>
           </ion-item>

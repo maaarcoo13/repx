@@ -1,4 +1,4 @@
-/* Mobile-first styles */
+/* === GLOBAL STYLES === */
 .stack {
   margin-bottom: 16px;
 }
@@ -10,7 +10,7 @@
   font-size: 20px;
 }
 
-/* Reduce the size of header buttons uniformly */
+/* Reduce header button sizes uniformly */
 ion-header ion-button {
   --padding-start: 4px;
   --padding-end: 4px;
@@ -18,8 +18,7 @@ ion-header ion-button {
   --height: 36px;
 }
 
-/*MAIN CONTENT*/
-
+/* === PHYSIQUE WRAPPER === */
 .physique-wrapper {
   width: 100%;
   max-width: 500px;
@@ -76,44 +75,63 @@ ion-header ion-button {
   box-shadow: 0 0 15px rgba(255,0,0,0.3);
 }
 
-
-
-
-/* Bottom Navigation Toolbar */
-.bottom-nav-toolbar {
-  padding: 0;             // Remove extra padding
+/* === MUSCLE SUMMARY CARDS === */
+.muscle-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
 }
 
-/* Container for the buttons */
+.muscle-card {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  border: 3px solid #fff;
+  border-radius: 12px;
+  background: rgba(50, 50, 50, 0.5);
+}
+
+.muscle-name {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.muscle-xp,
+.muscle-rank {
+  font-size: 16px;
+}
+
+/* === BOTTOM NAVIGATION === */
+.bottom-nav-toolbar {
+  padding: 0; /* Remove extra padding */
+}
+
 .bottom-nav {
   display: flex;
   width: 100%;
   padding: 0px;
-  gap: 2px;               // Space between buttons (acts as separator)
+  gap: 2px; /* Space between buttons */
 }
 
-/* Individual buttons */
 .bottom-nav-btn {
-  flex: 1;                 // Each button takes equal width
-  border-radius: 0;        // Make buttons rectangular
-  --padding-start: 0;      // Remove left padding
-  --padding-end: 0;        // Remove right padding
-  --background: #B90009;   // Button background color (red)
-  --color: #ffffff;        // Text and icon color (white)
+  flex: 1;                 /* Each button takes equal width */
+  border-radius: 0;        /* Rectangular buttons */
+  --padding-start: 0;
+  --padding-end: 0;
+  --background: #B90009;
+  --color: #ffffff;
   display: flex;
   height: 45px;
   margin: 0px;
-  flex-direction: column;  // Icon on top, text below
-  align-items: center;     // Center horizontally
-  justify-content: center; // Center vertically
-  text-align: center;      // Make sure text is centered
-  font-size: 0.9rem;       // Adjust text size if needed
-  line-height: 1.2rem;     // Ensure text fits under icon
-  white-space: nowrap;     // Prevent text from wrapping
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 1.2rem;
+  white-space: nowrap;
 }
-
-
-
 
 /* === RESPONSIVE TWEAKS (tablet & above) === */
 @media (min-width: 768px) {
@@ -141,15 +159,15 @@ ion-header ion-button {
   }
 }
 
-.weekly-chart-card {
-  background-color: #1a1a1a; /* coincide con otras cards */
-  border-radius: 12px;
-  padding: 16px;
-  margin: 16px 0;
-  color: #fff;
+/* === RADAR CHART GRID LINES === */
+canvas {
+  width: 100% !important;
+  height: 200px;
 }
 
-canvas {
-  width: 100% !important; /* full width del container */
-  height: 200px;           /* altura del gráfico */
-}
+/* === RANK COLORS (For Muscle Summary / Points) === */
+.bronze { color: #cd7f32; border-color: #cd7f32; }
+.silver { color: #c0c0c0; border-color: #c0c0c0; }
+.gold { color: #ffd700; border-color: #ffd700; }
+.red { color: #ff0000; border-color: #ff0000; }
+.blue { color: #00aaff; border-color: #00aaff; }

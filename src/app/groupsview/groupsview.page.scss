@@ -1,0 +1,75 @@
+.group-title {
+  font-size: 28px;
+  font-weight: 900;
+  color: #ff3b3b;
+  text-align: center;
+  text-shadow: 1px 1px 4px #000;
+  margin: 16px 0 12px 0;
+}
+
+.leaderboard-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.members-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.member-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  border-radius: 12px;
+  background-color: #3a3a3a;
+  color: #fff;
+  border: 3px solid #3a3a3a; /* default border */
+}
+
+.member-card.top-member {
+  font-weight: bold;
+}
+
+.member-rank {
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 12px;
+}
+
+.member-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pending-section {
+  margin: 12px 0;
+}
+
+.pending-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #3a3a3a;
+  color: #fff;
+  border-radius: 12px;
+  padding: 8px 12px;
+  margin-bottom: 4px;
+}
+
+.pending-card ion-button {
+  height: 32px;
+  font-size: 12px;
+}
+
+/* Bottom Navigation Toolbar */
+.bottom-nav-toolbar { padding: 0; }
+.bottom-nav { display: flex; width: 100%; gap: 2px; }
+.bottom-nav-btn { flex: 1; border-radius: 0; --background: #B90009; --color: #fff; display: flex; height: 45px; margin: 0; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 0.9rem; line-height: 1.2rem; white-space: nowrap; }
