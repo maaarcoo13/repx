@@ -12,6 +12,7 @@ import { SettingsPage } from './settings/settings.page';
 import { SignupPage } from './signup/signup.page';
 import { GroupsviewPage } from './groupsview/groupsview.page';
 
+
 export const routes: Routes = [
   {
     path: '',
@@ -65,5 +66,13 @@ export const routes: Routes = [
   {
     path: 'groupsview',
     component: GroupsviewPage
+  },
+  {
+    path: 'privacy',
+    loadComponent: () => import('./privacy/privacy.page').then( m => m.PrivacyPage)
+  },
+  {
+    path: 'account',
+    loadComponent: () => import('./account/account.page').then( m => m.AccountPage)
   }
 ];

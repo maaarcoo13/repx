@@ -24,8 +24,19 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<!-- 🔥 Friends / Groups Segment (Fixed!) -->
+<div class="segment-wrapper">
+  <ion-segment [(ngModel)]="selectedSegment" mode="md" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="groups">
+      <ion-label>Groups</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="friends">
+      <ion-label>Friends</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</div>
 
+<ion-content class="ion-padding">
   <div class="page-container">
 
     <!-- SEARCH + JOIN + CREATE -->

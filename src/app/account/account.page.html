@@ -15,7 +15,7 @@
 
     <ion-title class="center-title">RepX</ion-title>
 
-    <!-- Right buttons -->
+    <!-- Right button -->
     <ion-buttons slot="end">
       <ion-button routerLink="/settings">
         <img src="assets/icon/settings.png" alt="Settings" class="header-icon" width="40" height="30">
@@ -26,31 +26,36 @@
 
 <ion-content class="ion-padding">
 
-  <!-- Page Title -->
   <div class="page-header">
-    <h1>Settings</h1>
+    <h1>Account</h1>
+    <p class="subtitle">Manage your personal information</p>
   </div>
 
-  <div class="settings-list">
+  <!-- Info Cards -->
+  <div class="info-card">
+    <p><strong>Username:</strong> {{ username }}</p>
+  </div>
 
-    <!-- Account -->
-    <ion-item button (click)="goToAccount()">
-      <ion-label>Account</ion-label>
-      <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
-    </ion-item>
+  <div class="info-card">
+    <p><strong>Email:</strong> {{ email }}</p>
+  </div>
 
-    <!-- Privacy -->
-    <ion-item button (click)="goToPrivacy()">
-      <ion-label>Privacy</ion-label>
-      <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
-    </ion-item>
+  <div class="info-card">
+    <p><strong>Rank:</strong> {{ rank }}</p>
+  </div>
 
-    <!-- Notifications -->
+  <div class="info-card">
+    <p><strong>Workouts Completed:</strong> {{ workoutsCompleted }}</p>
+  </div>
+
+
+  <!-- Password Change -->
+  <div class="info-card password-section">
     <ion-item>
-      <ion-label>Notifications</ion-label>
-      <ion-toggle slot="end"></ion-toggle>
+      <ion-label position="stacked">New Password</ion-label>
+      <ion-input type="password" [(ngModel)]="newPassword"></ion-input>
     </ion-item>
-
+    <ion-button expand="block" color="danger" (click)="changePassword()">Update Password</ion-button>
   </div>
 
 </ion-content>

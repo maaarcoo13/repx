@@ -16,37 +16,46 @@ ion-header ion-button {
 /* === PAGE HEADER === */
 .page-header {
   text-align: center;
-  margin: 12px 0;
+  margin-bottom: 20px;
 
   h1 {
     color: #fff;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
+  }
+
+  .subtitle {
+    color: #aaa;
+    font-size: 14px;
+    margin: 0;
   }
 }
 
-/* === SETTINGS LIST === */
-.settings-list {
+/* === PRIVACY SECTION === */
+.privacy-section {
+  background-color: #1a1a1a;
   border-radius: 12px;
-  overflow: hidden;
-  background: #1a1a1a;
+  padding: 20px;
   border: 1px solid #333;
+  margin-bottom: 24px;
 
-  ion-item {
-    --background: #1a1a1a;
-    --color: #fff;
+  h2 {
+    color: #fff;
+    font-size: 20px;
+    margin-bottom: 12px;
+    font-weight: bold;
+  }
 
-    ion-label {
-      font-size: 16px;
-    }
+  p {
+    color: #ccc;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
 
-    ion-toggle {
-      --handle-background: #B90009;
-      --handle-background-checked: #B90009;
-      --background: #444;
-      --background-checked: #660005;
-    }
+  strong {
+    color: #fff;
   }
 }
 
@@ -64,6 +73,9 @@ ion-header ion-button {
 
 .bottom-nav-btn {
   flex: 1;
+  border-radius: 0;
+  --padding-start: 0;
+  --padding-end: 0;
   --background: #B90009;
   --color: #ffffff;
   display: flex;
@@ -72,5 +84,8 @@ ion-header ion-button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
   font-size: 0.9rem;
+  line-height: 1.2rem;
+  white-space: nowrap;
 }

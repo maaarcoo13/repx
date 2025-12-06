@@ -3,7 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, AlertController, ToastController } from '@ionic/angular';
 import { RouterModule, Router } from '@angular/router';
-import { Firestore, doc, setDoc, getDoc, collection, getDocs } from '@angular/fire/firestore';
+import {
+  Firestore,
+  doc,
+  setDoc,
+  getDoc,
+  collection,
+  getDocs
+} from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-groups',
@@ -24,6 +31,8 @@ export class GroupsPage implements OnInit {
   showJoinInput: boolean = false;
   joinGroupName: string = '';
 
+  selectedSegment: string = 'groups'; // default segment
+
   constructor(
     private firestore: Firestore,
     private router: Router,
@@ -38,14 +47,27 @@ export class GroupsPage implements OnInit {
     this.loadGroups();
   }
 
+  /** Segment change handler */
+  segmentChanged(event: any) {
+    const value = event.detail.value;
+    if (value === 'friends') {
+      this.router.navigate(['/friends']);
+    }
+    // 'groups' stays on this page
+  }
+
   /** Load User Groups */
   async loadGroups() {
-    const userGroupsRef = collection(this.firestore, `users/${this.currentUsername}/Groups`);
+    const userGroupsRef = collection(
+      this.firestore,
+      `users/${this.currentUsername}/Groups`
+    );
+
     const snap = await getDocs(userGroupsRef);
 
-    this.groups = snap.docs.map(doc => ({
-      groupName: doc.id,
-      status: doc.data()['Status'] || 'Member'
+    this.groups = snap.docs.map(docSnap => ({
+      groupName: docSnap.id,
+      status: docSnap.data()['Status'] || 'Member'
     }));
 
     this.applyFilter();
@@ -61,7 +83,9 @@ export class GroupsPage implements OnInit {
 
   /** Navigate to Group View */
   openGroupView(groupName: string) {
-    this.router.navigate(['/groupsview'], { queryParams: { name: groupName } });
+    this.router.navigate(['/groupsview'], {
+      queryParams: { name: groupName }
+    });
   }
 
   /** Toggle Join Input */
@@ -77,6 +101,7 @@ export class GroupsPage implements OnInit {
 
     const groupRef = doc(this.firestore, `Groups/${groupName}`);
     const exists = await getDoc(groupRef);
+
     if (!exists.exists()) {
       this.showToast('❌ Group does not exist');
       return;
@@ -85,14 +110,20 @@ export class GroupsPage implements OnInit {
     // Get user XP
     const userRef = doc(this.firestore, `users/${this.currentUsername}`);
     const userSnap = await getDoc(userRef);
-    const xp = userSnap.exists() ? userSnap.data()['xp'] || 0 : 0;
+    const xp = userSnap.exists() ? (userSnap.data()['xp'] || 0) : 0;
 
     // Add to global Groups/Members
-    const memberRef = doc(this.firestore, `Groups/${groupName}/Members/${this.currentUsername}`);
+    const memberRef = doc(
+      this.firestore,
+      `Groups/${groupName}/Members/${this.currentUsername}`
+    );
     await setDoc(memberRef, { status: 'Pending', xp });
 
     // Add to user's Groups
-    const userGroupRef = doc(this.firestore, `users/${this.currentUsername}/Groups/${groupName}`);
+    const userGroupRef = doc(
+      this.firestore,
+      `users/${this.currentUsername}/Groups/${groupName}`
+    );
     await setDoc(userGroupRef, { Status: 'Pending' });
 
     this.showToast(`⏳ Requested to join ${groupName}`);
@@ -105,7 +136,9 @@ export class GroupsPage implements OnInit {
     const alert = await this.alertCtrl.create({
       header: 'Create Group',
       message: 'Enter group name:',
-      inputs: [{ name: 'groupName', type: 'text', placeholder: 'Group name' }],
+      inputs: [
+        { name: 'groupName', type: 'text', placeholder: 'Group name' }
+      ],
       buttons: [
         { text: 'Cancel', role: 'cancel' },
         {
@@ -117,25 +150,34 @@ export class GroupsPage implements OnInit {
         }
       ]
     });
+
     await alert.present();
   }
 
   async createGroup(groupName: string) {
     // Global Groups
     const groupRef = doc(this.firestore, `Groups/${groupName}`);
-    await setDoc(groupRef, { CreatedBy: this.currentUsername });
+    await setDoc(groupRef, {
+      CreatedBy: this.currentUsername
+    });
 
     // User XP
     const userRef = doc(this.firestore, `users/${this.currentUsername}`);
     const userSnap = await getDoc(userRef);
-    const xp = userSnap.exists() ? userSnap.data()['xp'] || 0 : 0;
+    const xp = userSnap.exists() ? (userSnap.data()['xp'] || 0) : 0;
 
     // Add leader in global Members
-    const memberRef = doc(this.firestore, `Groups/${groupName}/Members/${this.currentUsername}`);
+    const memberRef = doc(
+      this.firestore,
+      `Groups/${groupName}/Members/${this.currentUsername}`
+    );
     await setDoc(memberRef, { status: 'Leader', xp });
 
     // Add group to user
-    const userGroupRef = doc(this.firestore, `users/${this.currentUsername}/Groups/${groupName}`);
+    const userGroupRef = doc(
+      this.firestore,
+      `users/${this.currentUsername}/Groups/${groupName}`
+    );
     await setDoc(userGroupRef, { Status: 'Leader' });
 
     this.showToast(`🎉 Group "${groupName}" created!`);

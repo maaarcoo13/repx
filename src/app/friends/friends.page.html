@@ -4,9 +4,11 @@
       <ion-button routerLink="/profile">
         <img src="assets/icon/profile.png" alt="Profile" class="header-icon" width="63" height="45">
       </ion-button>
+
       <ion-button routerLink="/groups">
         <img src="assets/icon/groups.png" alt="Groups" class="header-icon" width="57" height="42">
       </ion-button>
+
       <ion-button routerLink="/friends">
         <img src="assets/icon/friends.png" alt="Friends" class="header-icon" width="65" height="47">
       </ion-button>
@@ -24,23 +26,25 @@
 
 <ion-content class="ion-padding">
 
+  <!-- SEGMENT SWAPPER -->
   <div class="segment-wrapper">
-    <ion-segment [(ngModel)]="selectedSegment" mode="md">
+    <ion-segment [(ngModel)]="selectedSegment" mode="md" (ionChange)="segmentChanged($event)">
       <ion-segment-button value="friends">
         <ion-label>Friends</ion-label>
       </ion-segment-button>
+
       <ion-segment-button value="groups">
         <ion-label>Groups</ion-label>
       </ion-segment-button>
     </ion-segment>
   </div>
 
-  <!-- FRIENDS VIEW -->
+  <!-- FRIENDS SECTION -->
   <div *ngIf="selectedSegment === 'friends'">
 
-    <!-- FRIENDS SEARCH + ADD -->
+    <!-- SEARCH + ADD -->
     <div class="friends-search-wrapper">
-      <ion-searchbar 
+      <ion-searchbar
         [formControl]="searchControl"
         placeholder="Search friends..."
         class="friends-searchbar">
@@ -51,7 +55,7 @@
       </ion-button>
     </div>
 
-
+    <!-- FRIEND LIST -->
     <section class="friends-section">
       <h2>My Friends ({{ filteredFriends.length }})</h2>
 
@@ -61,11 +65,11 @@
 
           <div class="friend-details">
             <h3>{{ friend.name }}</h3>
-            <p class="friend-username">@{{ friend.username }}</p>
+            <p>@{{ friend.username }}</p>
 
             <div class="friend-stats">
               <ion-badge color="danger">{{ friend.rank }}</ion-badge>
-              <span class="xp-badge">{{ friend.xp | number }} XP</span>
+              <span class="xp-badge">{{ friend.xp }} XP</span>
             </div>
           </div>
         </div>
@@ -74,6 +78,7 @@
           <ion-button size="small" fill="clear" color="light" (click)="viewProfile(friend.username)">
             <ion-icon name="person-outline"></ion-icon>
           </ion-button>
+
           <ion-button size="small" fill="clear" color="light" (click)="openChat(friend.username)">
             <ion-icon name="chatbubble-outline"></ion-icon>
           </ion-button>
@@ -81,6 +86,7 @@
       </div>
     </section>
 
+    <!-- REQUESTS -->
     <section class="requests-section" *ngIf="friendRequests.length > 0">
       <h2>Friend Requests ({{ friendRequests.length }})</h2>
 
@@ -96,6 +102,7 @@
           <ion-button size="small" fill="solid" color="danger" (click)="acceptFriend(request.username)">
             Accept
           </ion-button>
+
           <ion-button size="small" fill="outline" color="light" (click)="declineFriend(request.username)">
             Decline
           </ion-button>
@@ -103,7 +110,7 @@
       </div>
     </section>
 
-    <section class="no-requests" *ngIf="friendRequests.length === 0">
+    <section *ngIf="friendRequests.length === 0">
       <div class="empty-state">
         <ion-icon name="checkmark-circle-outline" class="empty-icon"></ion-icon>
         <p>No pending friend requests</p>
@@ -112,9 +119,11 @@
 
   </div>
 
-  <!-- GROUPS VIEW -->
+  <!-- EMPTY GROUPS SLOT (CONTENT COMES FROM REAL GROUP PAGE) -->
   <div *ngIf="selectedSegment === 'groups'">
-    <!-- Aquí va tu código de grupos -->
+    <p style="text-align:center; margin-top:20px;">
+      Loading groups page...
+    </p>
   </div>
 
 </ion-content>

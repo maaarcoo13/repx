@@ -1,4 +1,3 @@
-/* === NAVIGATION TOOLBAR === */
 .center-title {
   text-align: center;
   flex: 1;
@@ -13,8 +12,28 @@ ion-header ion-button {
   --height: 36px;
 }
 
-/* === MAIN CONTENT === */
+/* === SEGMENT TOGGLE (Friends / Groups) === */
+.segment-wrapper {
+  margin: 10px 12px;
+}
 
+.segment-wrapper ion-segment {
+  --background: #111;
+  border-radius: 12px;
+  padding: 4px;
+}
+
+.segment-wrapper ion-segment-button {
+  --color: #aaa;
+  --color-checked: #fff;
+  --indicator-color: #B90009;
+  --indicator-height: 100%;
+  border-radius: 8px;
+  min-height: 40px;
+  font-weight: 600;
+}
+
+/* === MAIN CONTENT === */
 .page-container {
   padding: 12px;
 }
@@ -78,17 +97,14 @@ ion-header ion-button {
   margin-top: 20px;
 }
 
-/* Group Card (similar to friend card style) */
 .group-card {
   background: #2a2a2a;
   padding: 12px;
   border-radius: 14px;
   margin-bottom: 12px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   border: 1px solid #444;
 }
 

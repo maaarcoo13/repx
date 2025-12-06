@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar class="red-toolbar">
-    <!-- Left buttons -->
+
+    <!-- Left buttons: Profile, Groups, Friends -->
     <ion-buttons slot="start">
       <ion-button routerLink="/profile">
         <img src="assets/icon/profile.png" alt="Profile" class="header-icon" width="63" height="45">
@@ -13,14 +14,16 @@
       </ion-button>
     </ion-buttons>
 
+    <!-- Centered title -->
     <ion-title class="center-title">RepX</ion-title>
 
-    <!-- Right buttons -->
+    <!-- Right: Settings -->
     <ion-buttons slot="end">
       <ion-button routerLink="/settings">
         <img src="assets/icon/settings.png" alt="Settings" class="header-icon" width="40" height="30">
       </ion-button>
     </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
@@ -28,33 +31,30 @@
 
   <!-- Page Title -->
   <div class="page-header">
-    <h1>Settings</h1>
+    <h1>Privacy</h1>
+    <p class="subtitle">Your privacy is important to us</p>
   </div>
 
-  <div class="settings-list">
-
-    <!-- Account -->
-    <ion-item button (click)="goToAccount()">
-      <ion-label>Account</ion-label>
-      <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
-    </ion-item>
-
-    <!-- Privacy -->
-    <ion-item button (click)="goToPrivacy()">
-      <ion-label>Privacy</ion-label>
-      <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
-    </ion-item>
-
-    <!-- Notifications -->
-    <ion-item>
-      <ion-label>Notifications</ion-label>
-      <ion-toggle slot="end"></ion-toggle>
-    </ion-item>
-
+  <!-- Data & Privacy Section -->
+  <div class="privacy-section">
+    <h2>Data & Privacy</h2>
+    <p>
+      We collect certain information to improve your experience, such as account details, workout routines, and preferences.
+      Your data is stored securely and is only used to enhance the app's functionality. You have the right to access, correct,
+      or delete your personal information at any time.
+    </p>
+    <p>
+      We do not sell your personal data to third parties. You can manage your privacy settings in the app, and you are entitled
+      to request a full data export or deletion according to applicable privacy laws.
+    </p>
+    <p>
+      For more details, please review our full <strong>Privacy Policy</strong>.
+    </p>
   </div>
 
 </ion-content>
 
+<!-- Bottom Navigation -->
 <ion-footer>
   <ion-toolbar class="bottom-nav-toolbar">
     <ion-buttons class="bottom-nav">

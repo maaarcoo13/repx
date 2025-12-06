@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-settings',
@@ -13,9 +13,18 @@ import { RouterModule } from '@angular/router';
 })
 export class SettingsPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  // Navigate to Account page
+  goToAccount() {
+    this.router.navigate(['/account']);
+  }
+
+  // Navigate to Privacy page
+  goToPrivacy() {
+    this.router.navigate(['/privacy']);
   }
 
 }

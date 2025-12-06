@@ -49,11 +49,23 @@ export class FriendsPage implements OnInit {
 
     this.loadFriends();
 
-    this.searchControl.valueChanges.pipe(debounceTime(300)).subscribe(searchTerm => {
-      this.filterFriends(searchTerm);
-    });
+    this.searchControl.valueChanges
+      .pipe(debounceTime(300))
+      .subscribe(term => this.filterFriends(term));
   }
 
+  // HANDLE SEGMENT SWITCHING
+  segmentChanged(event: any) {
+    const value = event.detail.value;
+
+    if (value === 'friends') {
+      // stay here
+    } else if (value === 'groups') {
+      window.location.href = '/groups';
+    }
+  }
+
+  // LOAD FRIENDS + REQUESTS
   async loadFriends() {
     this.friendsList = [];
     this.friendRequests = [];
@@ -61,25 +73,26 @@ export class FriendsPage implements OnInit {
     const friendsCol = collection(this.firestore, `users/${this.currentUsername}/Friends`);
     const friendsSnapshot = await getDocs(friendsCol);
 
-    for (let friendDocSnap of friendsSnapshot.docs) {
-      const friendUsername = friendDocSnap.id;
-      const status = friendDocSnap.data()['status'];
+    for (let snap of friendsSnapshot.docs) {
+      const friendUsername = snap.id;
+      const status = snap.data()['status'];
 
-      const friendDataDoc = await getDoc(doc(this.firestore, `users/${friendUsername}`));
-      if (!friendDataDoc.exists()) continue;
+      const friendDoc = await getDoc(doc(this.firestore, `users/${friendUsername}`));
+      if (!friendDoc.exists()) continue;
 
-      const friendData = friendDataDoc.data();
+      const userData = friendDoc.data();
+
       const friendObj: Friend = {
         username: friendUsername,
-        name: friendData['username'] || friendUsername,
-        xp: friendData['xp'] || 0,
-        rank: friendData['rank'] || 'Beginner',
+        name: userData['username'] || friendUsername,
+        xp: userData['xp'] || 0,
+        rank: userData['rank'] || 'Beginner',
         avatar: 'assets/icon/profile-pic.jpg'
       };
 
-      if (status.toLowerCase() === 'accepted') {
+      if (status === 'accepted') {
         this.friendsList.push(friendObj);
-      } else if (status.toLowerCase() === 'requested') {
+      } else if (status === 'requested') {
         this.friendRequests.push({
           username: friendObj.username,
           name: friendObj.name,
@@ -91,59 +104,43 @@ export class FriendsPage implements OnInit {
     this.filteredFriends = [...this.friendsList];
   }
 
-  filterFriends(searchTerm: string) {
-    if (!searchTerm) {
+  filterFriends(term: string) {
+    if (!term) {
       this.filteredFriends = [...this.friendsList];
-    } else {
-      const lower = searchTerm.toLowerCase();
-      this.filteredFriends = this.friendsList.filter(f =>
-        f.username.toLowerCase().includes(lower) || f.name.toLowerCase().includes(lower)
-      );
+      return;
     }
+
+    const t = term.toLowerCase();
+    this.filteredFriends = this.friendsList.filter(f =>
+      f.username.toLowerCase().includes(t) ||
+      f.name.toLowerCase().includes(t)
+    );
   }
 
-  // --- ADD FRIEND ---
+  // SEND FRIEND REQUEST
   async addFriend() {
     const alert = await this.alertController.create({
       header: 'Add Friend',
-      inputs: [
-        {
-          name: 'username',
-          type: 'text',
-          placeholder: 'Enter username'
-        }
-      ],
+      inputs: [{ name: 'username', type: 'text', placeholder: 'Enter username' }],
       buttons: [
         { text: 'Cancel', role: 'cancel' },
         {
           text: 'Send Request',
           handler: async (data) => {
-            const targetUsername = data.username?.trim();
-            if (!targetUsername || targetUsername === this.currentUsername) return false;
+            const target = data.username?.trim();
+            if (!target || target === this.currentUsername) return false;
 
-            // Check if user exists
-            const targetDoc = await getDoc(doc(this.firestore, `users/${targetUsername}`));
+            const targetDoc = await getDoc(doc(this.firestore, `users/${target}`));
             if (!targetDoc.exists()) {
-              this.toastController.create({
-                message: `User "${targetUsername}" does not exist.`,
-                duration: 2000,
-                color: 'danger',
-                position: 'top'
-              }).then(toast => toast.present());
+              this.showToast(`User "${target}" does not exist.`, 'danger');
               return false;
             }
 
-            // Add to target user's Friends collection with status "requested"
-            const targetFriendRef = doc(this.firestore, `users/${targetUsername}/Friends/${this.currentUsername}`);
-            await setDoc(targetFriendRef, { status: 'requested' });
+            await setDoc(doc(this.firestore, `users/${target}/Friends/${this.currentUsername}`), {
+              status: 'requested'
+            });
 
-            this.toastController.create({
-              message: `✅ Friend request sent to ${targetUsername}!`,
-              duration: 2000,
-              color: 'success',
-              position: 'top'
-            }).then(toast => toast.present());
-
+            this.showToast(`Friend request sent to ${target}!`, 'success');
             return true;
           }
         }
@@ -153,78 +150,46 @@ export class FriendsPage implements OnInit {
     await alert.present();
   }
 
-  // --- ACCEPT FRIEND ---
+  // ACCEPT REQUEST
   async acceptFriend(username: string) {
-    const friendRef = doc(this.firestore, `users/${this.currentUsername}/Friends/${username}`);
-    await updateDoc(friendRef, { status: 'accepted' });
-
-    // Also update the other user to add you as their friend
-    const myRefInOther = doc(this.firestore, `users/${username}/Friends/${this.currentUsername}`);
-    await setDoc(myRefInOther, { status: 'accepted' });
-
-    const index = this.friendRequests.findIndex(f => f.username === username);
-    if (index > -1) {
-      const request = this.friendRequests.splice(index, 1)[0];
-
-      const friendDataDoc = await getDoc(doc(this.firestore, `users/${username}`));
-      let xp = 0, rank = 'Beginner', name = username;
-      if (friendDataDoc.exists()) {
-        const friendData = friendDataDoc.data();
-        xp = friendData['xp'] || 0;
-        rank = friendData['rank'] || 'Beginner';
-        name = friendData['username'] || username;
-      }
-
-      this.friendsList.push({
-        username,
-        name,
-        xp,
-        rank,
-        avatar: request.avatar
-      });
-      this.filterFriends(this.searchControl.value || '');
-    }
-
-    const toast = await this.toastController.create({
-      message: `✅ You are now friends with ${username}!`,
-      duration: 2000,
-      position: 'top',
-      color: 'success'
+    await updateDoc(doc(this.firestore, `users/${this.currentUsername}/Friends/${username}`), {
+      status: 'accepted'
     });
-    toast.present();
+
+    await setDoc(doc(this.firestore, `users/${username}/Friends/${this.currentUsername}`), {
+      status: 'accepted'
+    });
+
+    this.friendRequests = this.friendRequests.filter(r => r.username !== username);
+    this.loadFriends();
+
+    this.showToast(`You are now friends with ${username}!`, 'success');
   }
 
+  // DECLINE REQUEST
   async declineFriend(username: string) {
-    const friendRef = doc(this.firestore, `users/${this.currentUsername}/Friends/${username}`);
-    await deleteDoc(friendRef);
+    await deleteDoc(doc(this.firestore, `users/${this.currentUsername}/Friends/${username}`));
 
-    this.friendRequests = this.friendRequests.filter(f => f.username !== username);
+    this.friendRequests = this.friendRequests.filter(r => r.username !== username);
 
-    const toast = await this.toastController.create({
-      message: `❌ Friend request from ${username} declined`,
-      duration: 2000,
-      position: 'top',
-      color: 'medium'
-    });
-    toast.present();
+    this.showToast(`Friend request from ${username} declined.`, 'medium');
   }
 
   async viewProfile(username: string) {
-    const toast = await this.toastController.create({
-      message: `👤 Viewing ${username}'s profile...`,
-      duration: 1500,
-      position: 'bottom',
-      color: 'dark'
-    });
-    toast.present();
+    this.showToast(`Viewing ${username}'s profile...`, 'dark');
   }
 
   async openChat(username: string) {
+    this.showToast(`Chat coming soon!`, 'warning');
+  }
+
+  // TOAST HELPER
+  async showToast(message: string, color: string) {
     const toast = await this.toastController.create({
-      message: `💬 Chat feature coming soon!`,
+      message,
       duration: 2000,
-      position: 'bottom',
-      color: 'warning'
+      position: 'top',
+      color
     });
     toast.present();
   }
