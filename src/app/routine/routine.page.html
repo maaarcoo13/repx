@@ -4,13 +4,13 @@
     <!-- Left side buttons: Profile, Groups, Friends -->
     <ion-buttons slot="start">
       <ion-button routerLink="/profile">
-        <img src="assets/icon/profile.png" alt="Profile" class="header-icon" width=63px height = 45px>
+        <img src="assets/icon/profile.png" alt="Profile" class="header-icon" width="63px" height="45px">
       </ion-button>
       <ion-button routerLink="/groups">
-        <img src="assets/icon/groups.png" alt="Groups" class="header-icon" width=57px height = 42px>
+        <img src="assets/icon/groups.png" alt="Groups" class="header-icon" width="57px" height="42px">
       </ion-button>
       <ion-button routerLink="/friends">
-        <img src="assets/icon/friends.png" alt="Friends" class="header-icon" width=65px height = 47px>
+        <img src="assets/icon/friends.png" alt="Friends" class="header-icon" width="65px" height="47px">
       </ion-button>
     </ion-buttons>
 
@@ -20,8 +20,7 @@
     <!-- Right side: Settings -->
     <ion-buttons slot="end">
       <ion-button routerLink="/settings">
-        <img src="assets/icon/settings.png" alt="Settings" class="header-icon"
-        width=40px height = 30px>
+        <img src="assets/icon/settings.png" alt="Settings" class="header-icon" width="40px" height="30px">
       </ion-button>
     </ion-buttons>
 
@@ -29,7 +28,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  
+
   <!-- Page Title -->
   <div class="page-header">
     <h1>My Workout Routines</h1>
@@ -46,96 +45,15 @@
 
   <!-- Routines List -->
   <section class="routines-section">
-    <h2>Active Routines</h2>
+    <h2>Workouts</h2>
 
-    <!-- Routine Card 1 -->
-    <div class="routine-card">
+    <div *ngFor="let workout of workouts" class="routine-card" (click)="goToWorkout(workout.name)">
       <div class="routine-header">
-        <h3>Push Day</h3>
-        <ion-badge color="danger">Active</ion-badge>
+        <h3>{{ workout.name }}</h3>
       </div>
-      <p class="routine-description">Chest, Shoulders, Triceps</p>
-      <div class="routine-stats">
-        <span><ion-icon name="barbell-outline"></ion-icon> 6 exercises</span>
-        <span><ion-icon name="time-outline"></ion-icon> 60 min</span>
-      </div>
-      <div class="routine-actions">
-        <ion-button size="small" fill="outline" color="light" (click)="startRoutine('Push Day')">
-          <ion-icon name="play-outline" slot="start"></ion-icon>
-          Start
-        </ion-button>
-        <ion-button size="small" fill="clear" color="light" (click)="editRoutine('Push Day')">
-          <ion-icon name="create-outline"></ion-icon>
-        </ion-button>
-      </div>
+      <p class="routine-description">{{ workout.exercisesCount }} exercises</p>
     </div>
 
-    <!-- Routine Card 2 -->
-    <div class="routine-card">
-      <div class="routine-header">
-        <h3>Pull Day</h3>
-        <ion-badge color="medium">Inactive</ion-badge>
-      </div>
-      <p class="routine-description">Back, Biceps, Rear Delts</p>
-      <div class="routine-stats">
-        <span><ion-icon name="barbell-outline"></ion-icon> 7 exercises</span>
-        <span><ion-icon name="time-outline"></ion-icon> 65 min</span>
-      </div>
-      <div class="routine-actions">
-        <ion-button size="small" fill="outline" color="light" (click)="startRoutine('Pull Day')">
-          <ion-icon name="play-outline" slot="start"></ion-icon>
-          Start
-        </ion-button>
-        <ion-button size="small" fill="clear" color="light" (click)="editRoutine('Pull Day')">
-          <ion-icon name="create-outline"></ion-icon>
-        </ion-button>
-      </div>
-    </div>
-
-    <!-- Routine Card 3 -->
-    <div class="routine-card">
-      <div class="routine-header">
-        <h3>Leg Day</h3>
-        <ion-badge color="medium">Inactive</ion-badge>
-      </div>
-      <p class="routine-description">Quads, Hamstrings, Calves</p>
-      <div class="routine-stats">
-        <span><ion-icon name="barbell-outline"></ion-icon> 5 exercises</span>
-        <span><ion-icon name="time-outline"></ion-icon> 55 min</span>
-      </div>
-      <div class="routine-actions">
-        <ion-button size="small" fill="outline" color="light" (click)="startRoutine('Leg Day')">
-          <ion-icon name="play-outline" slot="start"></ion-icon>
-          Start
-        </ion-button>
-        <ion-button size="small" fill="clear" color="light" (click)="editRoutine('Leg Day')">
-          <ion-icon name="create-outline"></ion-icon>
-        </ion-button>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- Quick Stats Section -->
-  <section class="quick-stats">
-    <h2>This Week</h2>
-    <div class="stats-grid">
-      <div class="stat-item">
-        <ion-icon name="calendar-outline" class="stat-icon"></ion-icon>
-        <p class="stat-value">4</p>
-        <p class="stat-label">Workouts</p>
-      </div>
-      <div class="stat-item">
-        <ion-icon name="flame-outline" class="stat-icon"></ion-icon>
-        <p class="stat-value">240</p>
-        <p class="stat-label">Minutes</p>
-      </div>
-      <div class="stat-item">
-        <ion-icon name="trophy-outline" class="stat-icon"></ion-icon>
-        <p class="stat-value">12</p>
-        <p class="stat-label">PRs</p>
-      </div>
-    </div>
   </section>
 
 </ion-content>

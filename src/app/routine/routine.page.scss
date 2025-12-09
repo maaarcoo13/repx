@@ -120,49 +120,7 @@ ion-header ion-button {
 }
 
 /* === QUICK STATS SECTION === */
-.quick-stats {
-  background-color: #111;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 2px 8px rgba(255, 0, 0, 0.2);
-  
-  h2 {
-    color: #fff;
-    font-size: 20px;
-    margin-bottom: 16px;
-    text-align: center;
-    font-weight: bold;
-  }
-}
 
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-
-.stat-item {
-  text-align: center;
-  
-  .stat-icon {
-    font-size: 32px;
-    color: #B90009;
-    margin-bottom: 8px;
-  }
-  
-  .stat-value {
-    color: #fff;
-    font-size: 24px;
-    font-weight: bold;
-    margin: 4px 0;
-  }
-  
-  .stat-label {
-    color: #aaa;
-    font-size: 12px;
-    margin: 0;
-  }
-}
 
 /* === BOTTOM TOOLBAR === */
 .bottom-nav-toolbar {
@@ -204,4 +162,4 @@ ion-header ion-button {
   .stat-item .stat-icon {
     font-size: 40px;
   }
-}
+} 

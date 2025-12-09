@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar class="red-toolbar">
+
+    <ion-buttons slot="start">
+      <ion-button routerLink="/profile">
+        <img src="assets/icon/profile.png" class="header-icon" width="63" height="45">
+      </ion-button>
+      <ion-button routerLink="/groups">
+        <img src="assets/icon/groups.png" class="header-icon" width="57" height="42">
+      </ion-button>
+      <ion-button routerLink="/friends">
+        <img src="assets/icon/friends.png" class="header-icon" width="65" height="47">
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title class="center-title">RepX</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button routerLink="/settings">
+        <img src="assets/icon/settings.png" class="header-icon" width="40" height="30">
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-button expand="block" class="end-btn" (click)="confirmEndWorkout()">
+    End Workout
+  </ion-button>
+
+  <ion-list>
+    <ion-item *ngFor="let ex of exercises" (click)="editExercise(ex)" button detail>
+      <ion-label>
+        <h2>{{ ex.id }}</h2>
+        <p>Reps: {{ ex.reps }} | Weight: {{ ex.weight }} kg</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar class="bottom-nav-toolbar">
+    <ion-buttons class="bottom-nav">
+      <ion-button routerLink="/home" class="bottom-nav-btn">Home</ion-button>
+      <ion-button routerLink="/routine" class="bottom-nav-btn">Routine</ion-button>
+      <ion-button routerLink="/physique" class="bottom-nav-btn">Phy</ion-button>
+      <ion-button routerLink="/leaderboard" class="bottom-nav-btn">Leader</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

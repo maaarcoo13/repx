@@ -6,25 +6,25 @@
   font-size: 20px;
 }
 
+/* Reduce the size of header buttons uniformly */
 ion-header ion-button {
   --padding-start: 4px;
   --padding-end: 4px;
   --min-width: 36px;
   --height: 36px;
 }
-
 /* === PAGE HEADER === */
 .page-header {
   text-align: center;
-  margin-bottom: 30px;
-  
+  margin-bottom: 20px;
+
   h1 {
     color: #fff;
     font-size: 28px;
     font-weight: bold;
     margin-bottom: 8px;
   }
-  
+
   .subtitle {
     color: #aaa;
     font-size: 14px;
@@ -32,29 +32,77 @@ ion-header ion-button {
   }
 }
 
-/* === PLACEHOLDER CONTENT === */
-.placeholder-content {
-  text-align: center;
-  padding: 40px 20px;
-  
-  .placeholder-icon {
-    font-size: 120px;
-    color: #B90009;
-    margin-bottom: 20px;
-  }
-  
-  p {
-    color: #ccc;
-    font-size: 16px;
-    margin-bottom: 12px;
-  }
-  
-  .note {
-    color: #aaa;
-    font-size: 14px;
-    font-style: italic;
+/* === EXERCISES LIST === */
+
+
+.routines-section {
+  margin-bottom: 24px;
+
+  h2 {
+    color: #fff;
+    font-size: 20px;
+    margin-bottom: 16px;
+    font-weight: bold;
   }
 }
+
+.start-workout-btn {
+  --background: #B90009;
+  --background-activated: #8b0000;
+  --background-hover: #a30000;
+  --color: white;
+  margin-bottom: 16px;
+  font-weight: bold;
+  --border-radius: 10px;
+}
+
+.routine-card {
+  background-color: #111;
+  border-radius: 12px; /* Rounded corners */
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(255, 0, 0, 0.2);
+  border-left: 4px solid #B90009;
+
+  .routine-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+
+    h3 {
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0;
+    }
+  }
+
+  .routine-description {
+    color: #aaa;
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+}
+
+.add-exercise-btn {
+  --background: #B90009;   
+  --background-activated: #c0392b; 
+  --background-hover: #d64533;
+  --color: white;          
+  --border-radius: 10px;
+  font-weight: bold;
+}
+
+.add-workout-btn{
+  --background: #B90009;   
+  --background-activated: #c0392b; 
+  --background-hover: #d64533;
+  --color: white;          
+  --border-radius: 10px;
+  font-weight: bold;
+}
+
 
 /* === BOTTOM TOOLBAR === */
 .bottom-nav-toolbar {
@@ -85,4 +133,19 @@ ion-header ion-button {
   font-size: 0.9rem;
   line-height: 1.2rem;
   white-space: nowrap;
+}
+
+/* === RESPONSIVE === */
+@media (min-width: 768px) {
+  .routine-card {
+    padding: 20px;
+  }
+
+  .routine-header h3 {
+    font-size: 20px;
+  }
+
+  .routine-description {
+    font-size: 16px;
+  }
 }

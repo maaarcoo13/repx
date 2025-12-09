@@ -61,7 +61,7 @@
 
       <div class="friend-card" *ngFor="let friend of filteredFriends">
         <div class="friend-info">
-          <img [src]="friend.avatar || 'assets/icon/profile-pic.jpg'" alt="Friend" class="friend-avatar">
+          <img [src]="friend.avatar || 'assets/icon/profile.png'" alt="Friend" class="friend-avatar">
 
           <div class="friend-details">
             <h3>{{ friend.name }}</h3>
@@ -91,7 +91,7 @@
       <h2>Friend Requests ({{ friendRequests.length }})</h2>
 
       <div class="request-card" *ngFor="let request of friendRequests">
-        <img [src]="request.avatar || 'assets/icon/profile-pic.jpg'" alt="Request" class="request-avatar">
+        <img [src]="request.avatar || 'assets/icon/profile.png'" alt="Request" class="request-avatar">
 
         <div class="request-info">
           <h3>{{ request.name }}</h3>

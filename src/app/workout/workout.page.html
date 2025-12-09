@@ -4,13 +4,13 @@
     <!-- Left side buttons: Profile, Groups, Friends -->
     <ion-buttons slot="start">
       <ion-button routerLink="/profile">
-        <img src="assets/icon/profile.png" alt="Profile" class="header-icon" width=63px height = 45px>
+        <img src="assets/icon/profile.png" alt="Profile" class="header-icon" width="63px" height="45px">
       </ion-button>
       <ion-button routerLink="/groups">
-        <img src="assets/icon/groups.png" alt="Groups" class="header-icon" width=57px height = 42px>
+        <img src="assets/icon/groups.png" alt="Groups" class="header-icon" width="57px" height="42px">
       </ion-button>
       <ion-button routerLink="/friends">
-        <img src="assets/icon/friends.png" alt="Friends" class="header-icon" width=65px height = 47px>
+        <img src="assets/icon/friends.png" alt="Friends" class="header-icon" width="65px" height="47px">
       </ion-button>
     </ion-buttons>
 
@@ -20,8 +20,7 @@
     <!-- Right side: Settings -->
     <ion-buttons slot="end">
       <ion-button routerLink="/settings">
-        <img src="assets/icon/settings.png" alt="Settings" class="header-icon"
-        width=40px height = 30px>
+        <img src="assets/icon/settings.png" alt="Settings" class="header-icon" width="40px" height="30px">
       </ion-button>
     </ion-buttons>
 
@@ -29,16 +28,72 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <div class="page-header">
-    <h1>Workout Page</h1>
-    <p class="subtitle">Log and track your workouts</p>
-  </div>
 
-  <div class="placeholder-content">
-    <ion-icon name="barbell-outline" class="placeholder-icon"></ion-icon>
-    <p>This page is ready for development.</p>
-    <p class="note">Coming soon: Workout logging, exercise tracking, and sets/reps!</p>
-  </div>
+  <!-- START WORKOUT BUTTON -->
+  <ion-button expand="block" class="start-workout-btn" [routerLink]="['/startwork', workoutName]">
+    Start Workout
+  </ion-button>
+
+
+  <!-- EXERCISE LIST -->
+  <ion-card *ngFor="let exercise of exercises">
+    <ion-card-header>
+      <ion-card-title>{{ exercise.id }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Reps:</strong> {{ exercise.reps }}</p>
+      <p><strong>Weight:</strong> {{ exercise.weight }} kg</p>
+
+      <ion-button color="danger" size="small" (click)="deleteExercise(exercise.id)">
+        Delete
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- ADD EXERCISE BUTTON -->
+  <ion-button expand="block"  class="add-exercise-btn" (click)="showAddForm = !showAddForm">
+    {{ showAddForm ? 'Cancel' : 'Add Exercise' }}
+  </ion-button>
+
+
+
+  <!-- ADD EXERCISE FORM -->
+  <ion-card *ngIf="showAddForm">
+    <ion-card-header>
+      <ion-card-title>Add Exercise</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <!-- Select Exercise from Firestore List -->
+      <ion-item>
+        <ion-label>Exercise</ion-label>
+        <ion-select placeholder="Choose exercise" [(ngModel)]="selectedExercise">
+          <ion-select-option *ngFor="let ex of availableExercises" [value]="ex">
+            {{ ex }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Reps -->
+      <ion-item>
+        <ion-label position="floating">Reps</ion-label>
+        <ion-input type="number" [(ngModel)]="newReps"></ion-input>
+      </ion-item>
+
+      <!-- Weight -->
+      <ion-item>
+        <ion-label position="floating">Weight (kg)</ion-label>
+        <ion-input type="number" [(ngModel)]="newWeight"></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" class="add-workout-btn" (click)="addExercise()">
+        Add to Workout
+      </ion-button>
+
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
 
 <!-- Bottom Navigation -->

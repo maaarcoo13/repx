@@ -1,0 +1,91 @@
+/* Mobile-first styles */
+.stack {
+  margin-bottom: 16px;
+}
+
+.center-title {
+  text-align: center;
+  flex: 1;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* Reduce the size of header buttons uniformly */
+ion-header ion-button {
+  --padding-start: 4px;
+  --padding-end: 4px;
+  --min-width: 36px;
+  --height: 36px;
+}
+
+/* BODY */
+.timer {
+  text-align: center;
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #B90009;
+}
+
+.center-title {
+  text-align: center;
+  flex: 1;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.end-btn{
+  --background: #B90009;
+  --background-activated: #8b0000;
+  --background-hover: #a30000;
+  --color: white;
+  margin-bottom: 16px;
+  font-weight: bold;
+  --border-radius: 10px;
+}
+
+
+
+
+/* Bottom Navigation Toolbar */
+.bottom-nav-toolbar {
+  padding: 0;             // Remove extra padding
+}
+
+/* Container for the buttons */
+.bottom-nav {
+  display: flex;
+  width: 100%;
+  padding: 0px;
+  gap: 2px;               // Space between buttons (acts as separator)
+}
+
+/* Individual buttons */
+.bottom-nav-btn {
+  flex: 1;                 // Each button takes equal width
+  border-radius: 0;        // Make buttons rectangular
+  --padding-start: 0;      // Remove left padding
+  --padding-end: 0;        // Remove right padding
+  --background: #B90009;   // Button background color (red)
+  --color: #ffffff;        // Text and icon color (white)
+  display: flex;
+  height: 45px;
+  margin: 0px;
+  flex-direction: column;  // Icon on top, text below
+  align-items: center;     // Center horizontally
+  justify-content: center; // Center vertically
+  text-align: center;      // Make sure text is centered
+  font-size: 0.9rem;       // Adjust text size if needed
+  line-height: 1.2rem;     // Ensure text fits under icon
+  white-space: nowrap;     // Prevent text from wrapping
+}
+
+
+
+
+/* === RESPONSIVE TWEAKS (tablet & above) === */
+@media (min-width: 768px) {
+  .stack {
+    margin-bottom: 24px;
+  }
+}
