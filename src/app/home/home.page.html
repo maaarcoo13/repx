@@ -1,61 +1,92 @@
 <ion-header>
   <ion-toolbar class="red-toolbar">
+
+    <!-- Left side buttons: Profile, Groups, Friends -->
     <ion-buttons slot="start">
-      <ion-button routerLink="/profile"><img src="assets/icon/profile.png" alt="Profile" class="header-icon"></ion-button>
-      <ion-button routerLink="/groups"><img src="assets/icon/groups.png" alt="Groups" class="header-icon"></ion-button>
-      <ion-button routerLink="/friends"><img src="assets/icon/friends.png" alt="Friends" class="header-icon"></ion-button>
+      <ion-button routerLink="/profile">
+        <img src="assets/icon/profile.png" alt="Profile" class="header-icon" width="63" height="45">
+      </ion-button>
+      <ion-button routerLink="/groups">
+        <img src="assets/icon/groups.png" alt="Groups" class="header-icon" width="57" height="42">
+      </ion-button>
+      <ion-button routerLink="/friends">
+        <img src="assets/icon/friends.png" alt="Friends" class="header-icon" width="65" height="47">
+      </ion-button>
     </ion-buttons>
+
+    <!-- Centered title -->
     <ion-title class="center-title">RepX</ion-title>
+
+    <!-- Right side: Settings -->
     <ion-buttons slot="end">
-      <ion-button routerLink="/settings"><img src="assets/icon/settings.png" alt="Settings" class="header-icon"></ion-button>
+      <ion-button routerLink="/settings">
+        <img src="assets/icon/settings.png" alt="Settings" class="header-icon" width="40" height="30">
+      </ion-button>
     </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <!-- Rank Progress -->
+  <!-- Rank Progress Section -->
   <section class="stack card rank-section">
     <div class="rank-wrapper">
+      <!-- Previous Rank -->
       <div class="rank-side previous-rank" *ngIf="previousRank">
-        <img [src]="previousRank.image" class="rank-badge faded">
+        <img [src]="previousRank.image" alt="Previous Rank" class="rank-badge faded" />
         <p class="rank-label faded">{{ previousRank.name }}</p>
       </div>
+
+      <!-- Current Rank (center) -->
       <div class="rank-center">
-        <img [src]="currentRank.image" class="rank-badge current">
+        <img [src]="currentRank.image" alt="Current Rank" class="rank-badge current" />
         <p class="rank-title">{{ currentRank.name }}</p>
       </div>
+
+      <!-- Next Rank -->
       <div class="rank-side next-rank" *ngIf="nextRank">
-        <img [src]="nextRank.image" class="rank-badge faded">
+        <img [src]="nextRank.image" alt="Next Rank" class="rank-badge faded" />
         <p class="rank-label faded">{{ nextRank.name }}</p>
       </div>
     </div>
+
+    <!-- Progress Bar -->
     <div class="progress-container">
       <div class="progress-bar" [style.width.%]="rankProgress"></div>
     </div>
     <p class="progress-text">{{ rankProgress }}% complete</p>
   </section>
 
-  <!-- Weekly Progress -->
+  <!-- Weekly Progress Section -->
   <section>
-    <div class="weekly-chart-card">
-      <h2 style="text-align:center;">Weekly Progress</h2>
-      <canvas baseChart
+    <div class="weekly-chart-card" style="box-shadow: 0 2px 6px rgba(255, 0, 0, 0.2);">
+      <h2 style="text-align: center;">Weekly Progress</h2>
+      <canvas
+        baseChart
         [data]="barChartData"
         [options]="barChartOptions"
         chartType="bar">
       </canvas>
     </div>
   </section>
-
-  <!-- Personal Records -->
-  <section class="prs-section">
-    <h2>Personal Records</h2>
-    <div class="pr-grid">
-      <div class="pr-card" *ngFor="let pr of personalRecords">
-        <h3>{{ pr.exercise }}</h3>
-        <p>Weight: {{ pr.maxWeight }} lbs</p>
-        <p>Date: {{ pr.date }}</p>
-      </div>
-    </div>
-  </section>
 </ion-content>
+
+<!-- Bottom Navigation -->
+<ion-footer>
+  <ion-toolbar class="bottom-nav-toolbar">
+    <ion-buttons class="bottom-nav">
+      <ion-button routerLink="/home" class="bottom-nav-btn">
+        Home
+      </ion-button>
+      <ion-button routerLink="/routine" class="bottom-nav-btn">
+        Routine
+      </ion-button>
+      <ion-button routerLink="/physique" class="bottom-nav-btn">
+        Phy
+      </ion-button>
+      <ion-button routerLink="/leaderboard" class="bottom-nav-btn">
+        Leader
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

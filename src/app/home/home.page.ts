@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NgChartsModule } from 'ng2-charts';
 import { ChartType, ChartOptions, ChartData } from 'chart.js';
-import { Firestore, doc, getDoc, collection, getDocs, query, orderBy, limit } from '@angular/fire/firestore';
+import { Firestore, collection, getDocs, doc, getDoc } from '@angular/fire/firestore';
 
 interface Rank {
   name: string;
@@ -17,19 +17,12 @@ interface Rank {
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   standalone: true,
-  imports: [
-    IonicModule,
-    CommonModule,
-    RouterModule,
-    NgChartsModule
-  ]
+  imports: [IonicModule, CommonModule, RouterModule, NgChartsModule]
 })
 export class HomePage implements OnInit {
 
-  // === XP / Rank ===
   XP = 0;
   rankProgress = 0;
-
   currentRank: Rank = { name: '', image: '', xpRequired: 0 };
   previousRank: Rank = { name: '', image: '', xpRequired: 0 };
   nextRank: Rank = { name: '', image: '', xpRequired: 0 };
@@ -45,20 +38,15 @@ export class HomePage implements OnInit {
     { name: 'Titan', xpRequired: 44000, image: 'assets/badges/titan.png' },
     { name: 'Colossus', xpRequired: 50000, image: 'assets/badges/colossus.png' },
     { name: 'Ascendant', xpRequired: 56000, image: 'assets/badges/ascendant.png' },
-    { name: 'Omega', xpRequired: 62000, image: 'assets/badges/omega.png' },
-    { name: 'Godform', xpRequired: 70000, image: 'assets/badges/godform.png' },
+    { name: 'Omega', xpRequired: 62000, image: 'assets/badges/omega.png' }, 
+    { name: 'Godform', xpRequired: 70000, image: 'assets/badges/godform.png' }, 
   ];
 
-  // === Weekly Chart ===
+  // BAR CHART
   barChartData: ChartData<'bar', number[], string> = {
-    labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+    labels: [],
     datasets: [
-      {
-        label: 'Reps',
-        data: [0, 0, 0, 0, 0, 0, 0],
-        backgroundColor: '#FF0000',
-        borderRadius: 6
-      }
+      { label: 'Reps per day', data: [], backgroundColor: '#FF0000', borderRadius: 6 }
     ]
   };
 
@@ -68,37 +56,31 @@ export class HomePage implements OnInit {
     scales: { x: { grid: { display: false } }, y: { beginAtZero: true } }
   };
 
-  // === Personal Records Placeholder ===
-  personalRecords = [
-    { exercise: 'Bench Press', maxWeight: 225, date: '2025-10-10' },
-    { exercise: 'Squat', maxWeight: 315, date: '2025-10-08' },
-    { exercise: 'Deadlift', maxWeight: 405, date: '2025-10-12' },
-    { exercise: 'Overhead Press', maxWeight: 135, date: '2025-10-09' },
-  ];
-
-  currentUsername: string = '';
-
   constructor(private firestore: Firestore) {}
 
   async ngOnInit() {
-    this.currentUsername = localStorage.getItem('currentUsername') || '';
-    if (!this.currentUsername) return;
+    const username = localStorage.getItem('currentUsername');
+    if (!username) return;
 
-    await this.loadUserXP();
-    await this.loadWeeklyProgress();
+    // 1️⃣ Load XP and set rank
+    await this.loadXP(username);
+
+    // 2️⃣ Load last 7 days of workouts and build chart
+    await this.loadWeeklyProgress(username);
   }
 
-  async loadUserXP() {
-    const userRef = doc(this.firestore, `users/${this.currentUsername}`);
+  private async loadXP(username: string) {
+    const userRef = doc(this.firestore, `users/${username}`);
     const userSnap = await getDoc(userRef);
     if (!userSnap.exists()) return;
 
-    const data: any = userSnap.data();
-    this.XP = data?.xp || 0;
+    const data = userSnap.data() as any;
+    this.XP = data.xp || 0;
+
     this.updateRank();
   }
 
-  updateRank() {
+  private updateRank() {
     let currentIdx = 0;
     for (let i = 0; i < this.ranks.length; i++) {
       if (this.XP >= this.ranks[i].xpRequired) currentIdx = i;
@@ -113,28 +95,50 @@ export class HomePage implements OnInit {
     this.rankProgress = Math.floor(((this.XP - xpForCurrent) / (xpForNext - xpForCurrent)) * 100);
   }
 
-  async loadWeeklyProgress() {
-    const workoutsCol = collection(this.firestore, `users/${this.currentUsername}/Workouts`);
-    const q = query(workoutsCol, orderBy('timestamp', 'desc'), limit(100));
-    const querySnap = await getDocs(q);
+  private async loadWeeklyProgress(username: string) {
+    const workoutsRef = collection(this.firestore, `users/${username}/Workouts`);
+    const workoutDocs = await getDocs(workoutsRef);
 
-    // initialize 7-day array
-    const last7Days: number[] = Array(7).fill(0);
+    const repsByDay: Record<string, number> = {};
+
+    // Get last 7 days
     const today = new Date();
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(today);
+      d.setDate(today.getDate() - i);
+      const dayKey = `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
+      repsByDay[dayKey] = 0;
+    }
 
-    querySnap.forEach(docSnap => {
-      const data: any = docSnap.data();
-      const reps = data?.reps || 0;
-      const timestamp = data?.timestamp?.toDate?.() || new Date(data.timestamp);
+    workoutDocs.forEach(docSnap => {
+      const data = docSnap.data() as any;
+      const timestamp = data.timestamp;
+      const reps = data.reps || 0;
 
       if (!timestamp) return;
 
-      const diff = Math.floor((today.getTime() - timestamp.getTime()) / (1000 * 60 * 60 * 24));
-      if (diff >= 0 && diff < 7) {
-        last7Days[6 - diff] += reps; // 6-diff to reverse order: Sun=0 ... Sat=6
+      let date: Date;
+      if (timestamp.toDate) {
+        date = timestamp.toDate(); // Firestore Timestamp
+      } else {
+        date = new Date(timestamp); // fallback
+      }
+
+      const dayKey = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
+      if (repsByDay[dayKey] !== undefined) {
+        repsByDay[dayKey] += reps;
       }
     });
 
-    this.barChartData.datasets[0].data = last7Days;
+    // Prepare chart data
+    const labels: string[] = [];
+    const data: number[] = [];
+    Object.keys(repsByDay).sort().forEach(key => {
+      labels.push(key); 
+      data.push(repsByDay[key]);
+    });
+
+    this.barChartData = { labels, datasets: [{ label: 'Reps per day', data, backgroundColor: '#FF0000', borderRadius: 6 }] };
   }
+
 }
