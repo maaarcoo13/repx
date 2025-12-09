@@ -2,7 +2,7 @@
   <ion-toolbar class="red-toolbar">
     <ion-buttons slot="start">
       <ion-button routerLink="/profile">
-        <img src="assets/icon/profile.png" alt="Profile" class="header-icon" width="63" height="45">
+        <img src="assets/icon/profile.png" alt="Profile Picture" class="header-icon" width="63" height="45">
       </ion-button>
       <ion-button routerLink="/groups">
         <img src="assets/icon/groups.png" alt="Groups" class="header-icon" width="57" height="42">
@@ -35,21 +35,23 @@
     </div>
   </div>
 
+  <!-- Stats Section -->
   <div class="stats-section">
     <div class="stat-card">
-      <h3>Total Weight Lifted</h3>
-      <p>{{ user.weight || 0 }} kg</p>
+      <h3>Total Weight This Month</h3>
+      <p>{{ totalWeightThisMonth | number }} kg</p>
     </div>
     <div class="stat-card">
-      <h3>This Week</h3>
-      <p>—</p>
+      <h3>Weight Lifted Last Week</h3>
+      <p>{{ totalWeightLastWeek | number }} kg</p>
     </div>
     <div class="stat-card">
-      <h3>Best Muscle Group</h3>
-      <p>—</p>
+      <h3>Top Muscle Group</h3>
+      <p>{{ bestMuscle }}</p>
     </div>
   </div>
 
+  <!-- Personal Information Section -->
   <div class="personal-info">
     <h2>Personal Information</h2>
 

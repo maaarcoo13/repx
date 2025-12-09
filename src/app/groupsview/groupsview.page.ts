@@ -40,20 +40,32 @@ export class GroupsviewPage implements OnInit {
     const membersRef = collection(this.firestore, `Groups/${this.groupName}/Members`);
     const snap = await getDocs(membersRef);
 
-    this.members = snap.docs.map(docSnap => {
-      const data = docSnap.data();
-      return {
-        username: docSnap.id,
-        xp: data['xp'] || 0,
-        status: data['status'] || 'Member'
-      };
-    });
+    this.members = await Promise.all(snap.docs.map(async docSnap => {
+      const username = docSnap.id;
 
+      // Obtener la XP real del usuario desde users/username/xp
+      const userRef = doc(this.firestore, `users/${username}`);
+      const userSnap = await getDoc(userRef);
+      const userData = userSnap.data();
+      const xp = Math.round(userData?.['xp'] || 0); // redondeo a entero
+
+      const status = docSnap.data()['status'] || 'Member';
+
+      return {
+        username,
+        xp,
+        status
+      };
+    }));
+
+    // Ordenar miembros por XP descendente
     this.members.sort((a, b) => b.xp - a.xp);
 
+    // Determinar si el usuario actual es líder
     const currentMember = this.members.find(m => m.username === this.currentUsername);
     this.isLeader = currentMember?.status === 'Leader';
 
+    // Filtrar solicitudes pendientes
     this.pendingRequests = this.members.filter(m => m.status === 'Pending');
   }
 

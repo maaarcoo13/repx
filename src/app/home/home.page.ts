@@ -12,6 +12,12 @@ interface Rank {
   xpRequired: number;
 }
 
+interface PersonalRecord {
+  exercise: string;
+  maxWeight: number;
+  date: string;
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -56,17 +62,18 @@ export class HomePage implements OnInit {
     scales: { x: { grid: { display: false } }, y: { beginAtZero: true } }
   };
 
+  // PERSONAL RECORDS
+  personalRecords: PersonalRecord[] = [];
+
   constructor(private firestore: Firestore) {}
 
   async ngOnInit() {
     const username = localStorage.getItem('currentUsername');
     if (!username) return;
 
-    // 1️⃣ Load XP and set rank
     await this.loadXP(username);
-
-    // 2️⃣ Load last 7 days of workouts and build chart
     await this.loadWeeklyProgress(username);
+    await this.loadPersonalRecords(username);
   }
 
   private async loadXP(username: string) {
@@ -101,44 +108,60 @@ export class HomePage implements OnInit {
 
     const repsByDay: Record<string, number> = {};
 
-    // Get last 7 days
     const today = new Date();
     for (let i = 0; i < 7; i++) {
       const d = new Date(today);
       d.setDate(today.getDate() - i);
-      const dayKey = `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
-      repsByDay[dayKey] = 0;
+      const key = `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
+      repsByDay[key] = 0;
     }
 
     workoutDocs.forEach(docSnap => {
       const data = docSnap.data() as any;
-      const timestamp = data.timestamp;
       const reps = data.reps || 0;
-
+      const timestamp = data.timestamp;
       if (!timestamp) return;
 
-      let date: Date;
-      if (timestamp.toDate) {
-        date = timestamp.toDate(); // Firestore Timestamp
-      } else {
-        date = new Date(timestamp); // fallback
-      }
-
-      const dayKey = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
-      if (repsByDay[dayKey] !== undefined) {
-        repsByDay[dayKey] += reps;
-      }
+      const date: Date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+      const key = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
+      if (repsByDay[key] !== undefined) repsByDay[key] += reps;
     });
 
-    // Prepare chart data
     const labels: string[] = [];
     const data: number[] = [];
-    Object.keys(repsByDay).sort().forEach(key => {
-      labels.push(key); 
-      data.push(repsByDay[key]);
+    Object.keys(repsByDay).sort().forEach(k => {
+      labels.push(k);
+      data.push(repsByDay[k]);
     });
 
     this.barChartData = { labels, datasets: [{ label: 'Reps per day', data, backgroundColor: '#FF0000', borderRadius: 6 }] };
+  }
+
+  private async loadPersonalRecords(username: string) {
+    const workoutsRef = collection(this.firestore, `users/${username}/Workouts`);
+    const workoutDocs = await getDocs(workoutsRef);
+
+    const prMap: Record<string, { weight: number; date: string }> = {};
+
+    workoutDocs.forEach(docSnap => {
+      const data = docSnap.data() as any;
+      const name = data.name;
+      const weight = data.weight || 0;
+      const timestamp = data.timestamp;
+      if (!name || !timestamp) return;
+
+      const dateStr = timestamp.toDate ? timestamp.toDate().toLocaleDateString() : new Date(timestamp).toLocaleDateString();
+
+      if (!prMap[name] || weight > prMap[name].weight) {
+        prMap[name] = { weight, date: dateStr };
+      }
+    });
+
+    this.personalRecords = Object.keys(prMap).map(ex => ({
+      exercise: ex,
+      maxWeight: prMap[ex].weight,
+      date: prMap[ex].date
+    }));
   }
 
 }

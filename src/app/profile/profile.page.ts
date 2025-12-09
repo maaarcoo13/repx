@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { Firestore, doc, getDoc } from '@angular/fire/firestore';
+import { Firestore, collection, getDocs, doc, getDoc, query, where } from '@angular/fire/firestore';
 
 interface User {
   username: string;
@@ -39,7 +39,11 @@ export class ProfilePage implements OnInit {
     xp: 0
   };
 
-  // Aquí debes tener el username del usuario logueado
+  badgeImage: string = 'assets/badges/beginner.png';
+  totalWeightThisMonth: number = 0;
+  totalWeightLastWeek: number = 0;
+  bestMuscle: string = '—';
+
   currentUsername: string = localStorage.getItem('currentUsername') || '';
 
   ranks: Rank[] = [
@@ -57,16 +61,14 @@ export class ProfilePage implements OnInit {
     { name: 'Godform', xpRequired: 70000, image: 'assets/badges/godform.png' },
   ];
 
-  badgeImage: string = 'assets/badges/beginner.png';
-
   constructor(private firestore: Firestore) {}
 
   async ngOnInit() {
-    if (!this.currentUsername) {
-      console.warn('No current username set');
-      return;
-    }
+    if (!this.currentUsername) return;
+
     await this.loadUserData();
+    await this.loadWorkoutStats();
+    await this.loadBestMuscle();
   }
 
   private async loadUserData() {
@@ -89,11 +91,64 @@ export class ProfilePage implements OnInit {
           sex: data.sex,
         };
         this.updateRankAndBadge(this.user.xp);
-      } else {
-        console.warn('User document does not exist.');
       }
     } catch (error) {
       console.error('Error fetching user data:', error);
+    }
+  }
+
+  private async loadWorkoutStats() {
+    try {
+      const workoutsRef = collection(this.firestore, `users/${this.currentUsername}/Workouts`);
+      const workoutDocs = await getDocs(workoutsRef);
+
+      const now = new Date();
+      const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+      const sevenDaysAgo = new Date(now);
+      sevenDaysAgo.setDate(now.getDate() - 7);
+
+      let totalMonth = 0;
+      let totalWeek = 0;
+
+      workoutDocs.forEach(docSnap => {
+        const data = docSnap.data() as any;
+        const timestamp = data.timestamp;
+        const weight = data.weight || 0;
+        const reps = data.reps || 0;
+
+        if (!timestamp) return;
+
+        let date: Date;
+        if (timestamp.toDate) {
+          date = timestamp.toDate(); // Firestore Timestamp
+        } else {
+          date = new Date(timestamp); // fallback
+        }
+
+        const totalLifted = weight * reps;
+
+        if (date >= startOfMonth) totalMonth += totalLifted;
+        if (date >= sevenDaysAgo) totalWeek += totalLifted;
+      });
+
+      this.totalWeightThisMonth = totalMonth;
+      this.totalWeightLastWeek = totalWeek;
+    } catch (error) {
+      console.error('Error fetching workouts:', error);
+    }
+  }
+
+  private async loadBestMuscle() {
+    try {
+      const userRef = doc(this.firestore, 'users', this.currentUsername);
+      const userSnap = await getDoc(userRef);
+
+      if (userSnap.exists()) {
+        const data = userSnap.data() as any;
+        this.bestMuscle = data.topMuscle || '—';
+      }
+    } catch (error) {
+      console.error('Error fetching top muscle:', error);
     }
   }
 
