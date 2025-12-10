@@ -40,7 +40,34 @@ chart.js 3.9
 ng2-charts 4
 ionicons 7
 
-Home page: ![WhatsApp Image 2025-12-09 at 18 36 54_10c0c817](https://github.com/user-attachments/assets/4e623240-b4f6-4931-8f0d-138544e06175)
+#Home page: 
+![WhatsApp Image 2025-12-09 at 18 36 54_10c0c817](https://github.com/user-attachments/assets/4e623240-b4f6-4931-8f0d-138544e06175)
+
+
+#Routine page: 
+![WhatsApp Image 2025-12-09 at 18 36 54_a3b041ff](https://github.com/user-attachments/assets/8be5fef1-2397-4c11-8806-70ba12d5bd9b)
+
+
+#Workout page:
+![WhatsApp Image 2025-12-09 at 18 36 55_b403a6f0](https://github.com/user-attachments/assets/56fb65f8-e1ea-44ad-b20a-3d04dc33f8c8)
+
+
+#Physique page:
+![WhatsApp Image 2025-12-09 at 18 36 55_b9808de1](https://github.com/user-attachments/assets/89fc58e4-8af0-4236-9d80-4f5f5065bb7a)
+
+
+#Friends page: 
+![WhatsApp Image 2025-12-09 at 18 36 55_e036f769](https://github.com/user-attachments/assets/bf1e993d-1b72-41f6-9e38-6f020c193e75)
+
+
+#Leaderboard page:
+![WhatsApp Image 2025-12-09 at 18 36 55_87b47b54](https://github.com/user-attachments/assets/b775f49a-cdb8-4860-b1ef-8a7bc8bf781f)
+
+
+#Singup page:
+![WhatsApp Image 2025-12-09 at 18 40 55_9fac3eb3](https://github.com/user-attachments/assets/9630c7c9-7057-48e4-99c3-4877c4604236)
 
 
 
+#Groups page:
+![WhatsApp Image 2025-12-09 at 18 40 55_8dd9b1b0](https://github.com/user-attachments/assets/a4909b30-d70f-4528-9a55-e3d80598ddcf)
