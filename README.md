@@ -40,4 +40,7 @@ chart.js 3.9
 ng2-charts 4
 ionicons 7
 
+Home page: ![WhatsApp Image 2025-12-09 at 18 36 54_10c0c817](https://github.com/user-attachments/assets/4e623240-b4f6-4931-8f0d-138544e06175)
+
+
 
